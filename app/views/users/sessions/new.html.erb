@@ -1,7 +1,5 @@
-<div class="ui grid">
-  <div class="column"></div>
-</div>
-<div class="ui text container center aligned grid">
+
+<div class="ui text container center aligned grid" style="padding-top: 5%;">
     <div class='column'>
       <h2 class="ui header">ログイン</h2>
 
@@ -32,12 +30,17 @@
         <% end %>
 
         <div class="actions">
-          <%= f.submit "ログイン", class: "ui button" %>
+          <%= f.submit "ログイン", class: "ui inverted primary button" %>
         </div>
       <% end %>
 
       <div class="ui message">
         <%= render "users/shared/links" %>
+      </div>
+      <div class="ui message">
+        <h3>テストログイン</h3>
+        <p>Eメール：a@mail</p>
+        <p>パスワード：123456</p>
       </div>
     </div>
 </div>
