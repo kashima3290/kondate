@@ -7,7 +7,10 @@
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="ui left icon input">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example.com" %>
+          <i class="mail icon"></i>
+        </div>
       </div>
 
       <div class="field">
@@ -15,12 +18,18 @@
         <% if @minimum_password_length %>
           <em style="display: inline">(<%= @minimum_password_length %>文字以上)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="ui left icon input">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
+          <i class="lock icon"></i>
+        </div>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <div class="ui left icon input">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
+          <i class="lock icon"></i>
+        </div>
       </div>
 
       <div class="actions">
