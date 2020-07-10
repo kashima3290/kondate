@@ -1,25 +1,27 @@
-<div class="ui text container center aligned grid" style="padding-top: 5%;">
-  <div class='column'>
-    <h2 class="ui header">パスワードをお忘れの方へ</h2>
+<div class="meal-image">
+  <div class="ui text container center aligned grid" style="padding-top: 5%;">
+    <div class='column'>
+      <h2 class="ui header">パスワードをお忘れの方へ</h2>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "ui form" }) do |f| %>
-      <%= render "users/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "ui form" }) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
 
-      <div class="field">
-        <%= f.label :email %><br />
-        <div class="ui left icon input">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example.com" %>
-          <i class="mail icon"></i>
+        <div class="field">
+          <%= f.label :email %><br />
+          <div class="ui left icon input">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example.com" %>
+            <i class="mail icon"></i>
+          </div>
         </div>
-      </div>
 
-      <div class="actions">
-        <%= f.submit "パスワードの変更を依頼します", class: "ui inverted primary button" %>
-      </div>
-    <% end %>
+        <div class="actions">
+          <%= f.submit "パスワードの変更を依頼します", class: "ui primary button" %>
+        </div>
+      <% end %>
 
-    <div class="ui message">
-      <%= render "users/shared/links" %>
+      <div class="ui message">
+        <%= render "users/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
