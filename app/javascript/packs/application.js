@@ -10,6 +10,9 @@ require("channels")
 require("semantic-ui-sass")
 require('jquery')
 
+$(function(){
+  $('.ui.dropdown').dropdown();
+})
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
