@@ -1,0 +1,26 @@
+<div>
+<div class="ui orange inverted menu">
+  <% if current_user.icon.present? %>
+    <%= image_tag current_user.icon.url, class: "user-icon" %>
+  <% else %>
+    <div class="ui dropdown item"><%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
+  <% end %>
+  &nbsp;name
+  <i class="dropdown icon"></i>
+  <div class="menu">
+      <a class="item">アカウント編集</a>
+      <a class="item">ログアウト</a>
+    </div>
+  </div>
+  <a class="item">メニュー</a>
+  <a class="item">投稿</a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui transparent icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
