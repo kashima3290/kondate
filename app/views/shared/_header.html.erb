@@ -9,7 +9,7 @@
   <i class="dropdown icon"></i>
   <div class="menu">
       <a class="item">アカウント編集</a>
-      <a class="item">ログアウト</a>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item" %>
     </div>
   </div>
   <a class="item">メニュー</a>
