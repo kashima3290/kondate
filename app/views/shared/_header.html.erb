@@ -8,7 +8,7 @@
   &nbsp;name
   <i class="dropdown icon"></i>
   <div class="menu">
-      <a class="item">アカウント編集</a>
+      <%= link_to "アカウント編集", edit_user_path(current_user.id), class: "item" %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item" %>
     </div>
   </div>
