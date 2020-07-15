@@ -1,2 +1,17 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div>
+  <div class="ui center aligned grid" style="padding-top: 5%;">
+    <div class="sixteen wide column">
+    </div>
+  </div>
+  <div class="ui container grid">
+    <div class="six wide column">
+      <% if current_user.icon.present? %>
+        <%= image_tag current_user.icon.url, class: "ui small circular image" %>
+      <% else %>
+        <%= image_tag 'dummyhuman.png', class: "ui small circular image" %>
+      <% end %>
+    </div>
+    <div class="ten wide column">
+    </div>
+  </div>
+</div>
