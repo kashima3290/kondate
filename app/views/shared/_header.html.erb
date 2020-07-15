@@ -1,9 +1,13 @@
 <div>
 <div class="ui orange inverted menu">
   <% if current_user.icon.present? %>
-    <%= image_tag current_user.icon.url, class: "ui mini circular image" %>
+    <div class="ui dropdown item">
+      <%= image_tag current_user.icon.url, class: "ui mini circular image" %>
+    </div>
   <% else %>
-    <div class="ui dropdown item"><%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
+    <div class="ui dropdown item">
+      <%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
+    </div>
   <% end %>
   &nbsp;name
   <i class="dropdown icon"></i>
