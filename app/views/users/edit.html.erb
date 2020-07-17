@@ -4,9 +4,9 @@
    <%= link_to "戻る", :back, class: "item" %>
   </div>
 
-  <div class="ui container grid" style="padding-top: 7%;">
-    <div class="six wide column">
-      <%= form_with model: @user do |f| %>
+  <%= form_with model: @user, local: true, method: :put do |f| %>
+    <div class="ui container grid" style="padding-top: 7%;">
+      <div class="six wide column">
         <div class="ui special cards">
           <div class="card">
               <div class="blurring dimmable image">
@@ -42,12 +42,12 @@
             </div>
           </div>
           <div class="ui text container center aligned" style="margin-top: 20px;">
-            <%= f.submit "変更", class: "ui primary button", method: "post" %>
+            <%= f.submit "変更", class: "ui primary button" %>
           </div>
         </div>
 
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
