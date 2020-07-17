@@ -20,7 +20,6 @@
                 </div>
                 <% if current_user.icon.present? %>
                   <%= image_tag current_user.icon.url, class: "ui small circular image" %>
-                  <%= f.file_field :icon %>
                 <% else %>
                   <%= image_tag 'dummyhuman.png', class: "ui small circular image" %>
                 <% end %>
