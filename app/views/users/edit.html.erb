@@ -1,7 +1,9 @@
 <div>
+
   <div class="ui orange inverted menu" style="height: 60px;">
    <%= link_to "戻る", :back, class: "item" %>
   </div>
+
   <div class="ui container grid" style="padding-top: 7%;">
     <div class="six wide column">
       <%= form_with model: @user do |f| %>
@@ -33,10 +35,6 @@
             <div class="required field">
               <label>名前</label>
               <%= f.text_field :name, placeholder: "guest", style: "width: 200px;" %>
-            </div>
-            <div class="required field">
-              <label>メールアドレス</label>
-              <%= f.email_field :email, placeholder: "example.com" %>
             </div>
             <div class="field">
               <label>コメント</label>
