@@ -6,7 +6,7 @@
   <% else %>
     <%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
   <% end %>
-  &nbsp;name
+  &nbsp;<%= current_user.name %>
   <i class="dropdown icon"></i>
   <div class="menu">
       <%= link_to "ユーザー情報編集", edit_user_path(current_user.id), class: "item" %>
