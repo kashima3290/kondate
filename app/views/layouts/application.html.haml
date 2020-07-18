@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Kondate
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}/
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'preview', 'data-turbolinks-track': 'reload'
+  %body
+    = yield
