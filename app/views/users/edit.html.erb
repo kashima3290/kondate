@@ -1,8 +1,6 @@
 <div>
 
-  <div class="ui orange inverted menu" style="height: 60px;">
-   <%= link_to "戻る", :back, class: "item" %>
-  </div>
+  <%= render "shared/header"  %>
 
   <%= form_with model: @user, local: true, method: :put do |f| %>
     <div class="ui container grid" style="padding-top: 7%;">
