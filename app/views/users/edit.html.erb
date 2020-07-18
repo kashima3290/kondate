@@ -21,9 +21,9 @@
                   </div>
                 </div>
                 <% if current_user.icon.present? %>
-                  <%= image_tag current_user.icon, class: "ui small circular image change-image" %>
+                  <%= image_tag current_user.icon, class: "change-image" %>
                 <% else %>
-                  <%= image_tag 'dummyhuman.png', class: "ui small circular image change-image" %>
+                  <%= image_tag 'dummyhuman.png', class: "change-image" %>
                 <% end %>
               </div>
             </div>

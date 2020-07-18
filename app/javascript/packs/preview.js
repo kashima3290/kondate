@@ -1,13 +1,13 @@
 $(document).on('turbolinks:load', function() {
-  $(function () {
-    function buildHTML(image){
-      var html = `
-      <img src="${image}", alt="preview" class="change-image">
-      `
-      return html;
-    }
+  $(function() {
     $(document).on('change', '.change-file', function() {
-      console.log('hello');
-    })
-  })
-})
+      let file = this.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function() {
+        let image = this.result;
+        $('.change-image').attr({ src: image });
+      }
+    });
+  });
+});
