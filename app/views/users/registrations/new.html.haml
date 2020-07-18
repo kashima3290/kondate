@@ -1,0 +1,29 @@
+.meal-image
+  .ui.text.container.center.aligned.grid{:style => "padding-top: 5%;"}
+    .column
+      %h2.ui.header 新規登録
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f|
+        .field
+          = f.label :email
+          %br/
+          .ui.left.icon.input
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example.com"
+            %i.mail.icon
+        .field
+          = f.label :password
+          %br/
+          .ui.left.icon.input
+            = f.password_field :password, autocomplete: "new-password", placeholder: "password"
+            %i.lock.icon
+        .field
+          = f.label :password_confirmation
+          %br/
+          .ui.left.icon.input
+            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password"
+            %i.lock.icon
+        = f.hidden_field :name, value: "guest"
+        .actions
+          = f.submit "登録", class: "ui primary button"
+      .ui.message
+        = render "users/shared/links"
+      = render "users/shared/error_messages", resource: resource
