@@ -10,8 +10,18 @@ require("channels")
 require("semantic-ui-sass")
 require('jquery')
 
+jQuery(document).on('turbolinks:load', function(){
+  $('.ui.dropdown').dropdown();
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });
+})
+
 $(function(){
   $('.ui.dropdown').dropdown();
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });
 })
 
 

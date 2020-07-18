@@ -1,18 +1,20 @@
 <div>
-<div class="ui orange inverted menu">
+<div class="ui orange inverted menu" style="height: 60px;">
+  <div class="ui dropdown item">
   <% if current_user.icon.present? %>
-    <%= image_tag current_user.icon.url, class: "user-icon" %>
+    <%= image_tag current_user.icon, class: "ui mini circular image" %>
   <% else %>
-    <div class="ui dropdown item"><%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
+    <%= image_tag 'dummyhuman.png', class: "ui mini circular image" %>
   <% end %>
-  &nbsp;name
+  &nbsp;<%= current_user.name %>
   <i class="dropdown icon"></i>
   <div class="menu">
-      <a class="item">アカウント編集</a>
-      <a class="item">ログアウト</a>
+      <%= link_to "ユーザー情報編集", edit_user_path(current_user.id), class: "item" %>
+      <%= link_to "メールアドレス・パスワード変更", edit_user_registration_path, class: "item" %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item" %>
     </div>
   </div>
-  <a class="item">メニュー</a>
+  <%= link_to "メニュー", menus_path, class: "item" %>
   <a class="item">投稿</a>
   <div class="right menu">
     <div class="item">
