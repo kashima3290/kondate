@@ -1,24 +1,26 @@
-# README
+献立決めアプリ🍚
+====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+献立を決めてくれるアプリケーションを作成しました。
 
-Things you may want to cover:
+## 🔔 概要
+　毎日献立を立てるのが面倒だと、自分の家族内での問題を解決するアプリケーションを実装中です。メインの機能としては、これまで作ってきた料理を保存し、今日の気分やニーズに合わせて料理を決めてくれます。
 
-* Ruby version
+## 🔔 使用技術
+* Ruby (2.6.0)<br><br>
+* Ruby on Rails (6.0.3)<br><br>
+* JavaScript<br><br>
+* jQuery<br><br>
+* MySQL (8.0.19)<br><br>
+* AWS (EC2・S3)<br><br>
 
-* System dependencies
+## 🔔 機能
+* ユーザー登録機能
+* 料理投稿機能
+* 料理検索機能
 
-* Configuration
+## 🔔 アプリURL
+[アプリケーションへはこちらから](https:)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 🔔 テストコード
+* 
