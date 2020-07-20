@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
-  include Devise::TestHelpers
+  include Devise::Test::IntegrationHelpers
 
   def setup
     @user = users(:firstuser)
@@ -10,7 +10,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get users_index_url
+    get users_path
     assert_response :success
   end
 
@@ -19,9 +19,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   #   assert_response :success
   # end
 
-  # test "should get edit" do
-  #   get users_edit_url
-  #   assert_response :success
-  # end
+  test "should get edit" do
+    get edit_user_path(current_user.id)
+    assert_response :success
+  end
 
 end
