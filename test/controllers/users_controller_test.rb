@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
-    @user = users(:firstuser)
+    @user = users(:one)
     sign_in(@user)
   end
 
@@ -20,7 +20,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # end
 
   test "should get edit" do
-    get edit_user_path(current_user.id)
+    @user = users(:one)
+    puts @user.id
+    get edit_user_url(@user.id)
     assert_response :success
   end
 
