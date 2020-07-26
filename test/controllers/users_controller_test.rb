@@ -5,15 +5,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   # サインアップ検証
-  def setup
+  setup do
     @user = users(:one)
     sign_in(@user)
   end
 
   # ログイン
   def test_new
-    @user = users(:one)
-    login_as(@user, scope: :user)
+    login_as(@user)
     get root_path
     assert_response :success
   end
@@ -26,23 +25,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # ユーザー詳細 get
   test "should get show" do
-    @user = users(:one)
-    get user_path(@user[:id])
+    get user_url(@user[:id])
     assert_response :success
   end
 
   # ユーザー情報編集 get
   test "should get edit" do
-    @user = users(:one)
     get edit_user_url(@user[:id])
     assert_response :success
   end
 
-  # ユーザー情報更新 get
-  test "should get update" do
-    @user = users(:one)
-    get users_update_url(@user[:id])
-    assert_response :success
+  # ユーザー情報更新 patch
+  test "should patch update" do
+    patch user_url(@user), params: {user: {name: "new", profile: "updated"}}
+    @user.reload.profile
+    assert_equal "updated", @user.profile
   end
 
 end
