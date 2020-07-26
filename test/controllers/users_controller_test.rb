@@ -14,15 +14,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should get show" do
-  #   get users_show_url
-  #   assert_response :success
-  # end
+  test "should get show" do
+    @user = users(:one)
+    get user_path(@user[:id])
+    assert_response :success
+  end
 
   test "should get edit" do
     @user = users(:one)
-    puts @user.id
-    get edit_user_url(@user.id)
+    get edit_user_path(@user[:id])
     assert_response :success
   end
 
