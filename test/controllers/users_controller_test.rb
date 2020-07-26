@@ -11,7 +11,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   # ログイン
-  def test_new
+  test "test_new" do
     login_as(@user)
     get root_path
     assert_response :success
@@ -40,6 +40,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_url(@user), params: {user: {name: "new", profile: "updated"}}
     @user.reload.profile
     assert_equal "updated", @user.profile
+  end
+
+  # ログアウト
+  test "sign out" do
+    sign_out(@user)
+    get new_user_session_path
+    assert_response :success
   end
 
 end

@@ -1,6 +1,6 @@
 one:
   id: 1
-  email: "john@example.com"
+  email: "guest@example.com"
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   name: "guest"
   profile: null
