@@ -1,6 +1,30 @@
 one:
-  id: 1
-  email: "guest@example.com"
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  email: "guest1@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 123456) %>
   name: "guest"
   profile: null
+
+nameless_user:
+  email: "nameless_user@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 123456) %>
+  name: null
+
+emailless_user:
+  email: null
+  encrypted_password: <%= Devise::Encryptor.digest(User, 123456) %>
+  name: "emailless_user"
+
+passwordless_user:
+  email: "passwordless_user@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "") %>
+  name: "passwordless_user"
+
+encrypted_passwordless_user:
+  email: "encrypted_passwordless_user@example.com"
+  encrypted_password: null
+  name: "encrypted_passwordless_user"
+
+less_than_six_characters_password_user:
+  email: "less_than_six_characters_password_user@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 12345) %>
+  name: "encrypted_passwordless_user"
