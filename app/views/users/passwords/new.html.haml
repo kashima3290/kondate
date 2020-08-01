@@ -1,5 +1,5 @@
 .meal-image
-  .ui.text.container.center.aligned.grid{:style => "padding-top: 5%;"}
+  .ui.text.container.center.aligned.grid{style: "padding-top: 5%;"}
     .column
       %h2.ui.header パスワードをお忘れの方へ
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "ui form" }) do |f|
