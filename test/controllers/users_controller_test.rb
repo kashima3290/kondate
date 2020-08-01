@@ -19,7 +19,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # ユーザー一覧 get
   test "should get index" do
-    get users_path
+    get users_url
     assert_response :success
   end
 
@@ -31,7 +31,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   # ユーザー情報編集 get
   test "should get edit" do
-    get edit_user_url(@user[:id])
+    get edit_user_url(@user)
     assert_response :success
   end
 
@@ -45,7 +45,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # ログアウト
   test "sign out" do
     sign_out(@user)
-    get new_user_session_path
+    get new_user_session_url
     assert_response :success
   end
 
