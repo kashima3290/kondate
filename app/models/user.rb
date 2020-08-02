@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :encrypted_password, presence: true
   has_one_attached :icon
+  has_many :menus
 end
