@@ -1,15 +1,17 @@
 = render "shared/header"
-.ui.grid.container
-  .doubling.four.column.row
-    .column
-      .ui.link.cards{style: "margin-top: 10px;"}
-        .card
-          .image
-            = image_tag 'dummyhuman.png'
-          .content
-            .header hello
-            .meta
-              %a 友達
-            .description Matthew is an interior designer living in New York.
-%button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
-  %i.plus.icon
+- @menus.each do |menu|
+  .ui.grid.container
+    .doubling.four.column.row
+      .column
+        .ui.link.cards{style: "margin-top: 10px;"}
+          .card
+            .image
+              = image_tag 'dummyhuman.png'
+            .content
+              .header hello
+              .meta
+                %a 友達
+              .description Matthew is an interior designer living in New York.
+= link_to new_menu_path do
+  %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
+    %i.plus.icon
