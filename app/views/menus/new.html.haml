@@ -31,5 +31,11 @@
               .image
                 = image_tag 'dummyhuman.png', class: "change-image"
               .contents
-                = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-4', style: "display:none;", data: {preview_id: 4}
+                .ui.bottom.attached.buttons
+                  = i.label :image, '変更', class: 'ui green button'
+                  = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-4', style: "display:none;", data: {preview_id: 4}
+                  .or
+                  %button.ui.red.button 削除
+                  
+                -# = i.label :image, '画像を追加', class: 'ui bottom attached button'
+                -# = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-4', style: "display:none;", data: {preview_id: 4}
