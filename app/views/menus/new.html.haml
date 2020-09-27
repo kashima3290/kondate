@@ -8,36 +8,28 @@
           .column
             .ui.card
               .image
-                = image_tag 'noimage.png', class: "change-image"
+                = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 1}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", data: {preview_id: 1}
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", data: {menu_file_id: 1}
           .column
             .ui.card
               .image
-                = image_tag 'noimage.png', class: "change-image"
+                = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 2}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-2', style: "display:none;", data: {preview_id: 2}
-
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", data: {menu_file_id: 2}
           .column
             .ui.card
               .image
-                = image_tag 'noimage.png', class: "change-image"
+                = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 3}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-3', style: "display:none;", data: {preview_id: 3}
-
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", data: {menu_file_id: 3}
           .column
             .ui.card
               .image
-                = image_tag 'noimage.png', class: "change-image"
+                = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 4}
               .contents
-                .ui.bottom.attached.buttons
-                  = i.label :image, '変更', class: 'ui green button'
-                  = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-4', style: "display:none;", data: {preview_id: 4}
-                  .or
-                  %button.ui.red.button.delete-preview  削除
-
-                -# = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                -# = i.file_field :image, type: 'file', class: 'change-file', id: 'preview-4', style: "display:none;", data: {preview_id: 4}
+                = i.label :image, '画像を追加', class: 'ui bottom attached button'
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", data: {menu_file_id: 4}
