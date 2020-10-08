@@ -5,6 +5,7 @@ class CreateMenus < ActiveRecord::Migration[6.0]
       t.string :genre, null: false
       t.string :site
       t.text :text
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

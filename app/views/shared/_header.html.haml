@@ -1,5 +1,5 @@
 %div
-  .ui.orange.inverted.menu{:style => "height: 60px;"}
+  .ui.orange.inverted.menu{style: "height: 60px;"}
     .ui.dropdown.item
       - if current_user.icon.present?
         = image_tag current_user.icon, class: "ui mini circular image"
@@ -16,5 +16,5 @@
     .right.menu
       .item
         .ui.transparent.icon.input
-          %input{:placeholder => "Search...", :type => "text"}/
+          %input{placeholder: "Search...", type: "text"}/
           %i.search.link.icon
