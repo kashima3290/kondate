@@ -20,5 +20,5 @@ test:
 production:
   <<: *default
   database: kondate_production
-  username: kondate
-  password: <%= ENV['KONDATE_DATABASE_PASSWORD'] %>
+  username: root
+  password:
