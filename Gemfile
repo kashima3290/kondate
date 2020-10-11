@@ -64,3 +64,5 @@ gem "haml-rails"
 gem 'semantic-ui-sass'
 gem 'devise'
 gem 'rails-i18n'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
