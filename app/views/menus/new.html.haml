@@ -11,22 +11,21 @@
                 = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 1}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview1')"
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview1')", id: "preview1"
           .column
             .ui.card
               .image
                 = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 2}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview2')"
-
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview2')", id: "preview2"
           .column
             .ui.card
               .image
                 = image_tag 'noimage.png', class: "change-image", data: {menu_image_id: 3}
               .contents
                 = i.label :image, '画像を追加', class: 'ui bottom attached button'
-                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview3')"
+                = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onChange: "imgPreView(event, 'preview3')", id: "preview3"
 
           .column
             .ui.card
