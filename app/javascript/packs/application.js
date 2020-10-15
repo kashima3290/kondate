@@ -9,8 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("semantic-ui-sass")
 require('jquery')
-require("preview.js")
-require("preview_menus.js")
+// require("packs/preview.js")
+// require("packs/preview_menus.js")
 
 jQuery(document).on('turbolinks:load', function(){
   $('.ui.dropdown').dropdown();
