@@ -12,17 +12,16 @@
                   = image_tag 'noimage.png', class: "change-image", id: "preview-img#{i}"
                   = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
                   = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display:none;", data: {menu_file_id: i}, onchange: "addImg(event, #{i})"
-
-          -# .column
-          -#   .ui.card
-          -#     .image
-          -#       = image_tag 'noimage.png', class: "change-image", id: "img-preview4"
-          -#     .contents
-          -#       .ui.bottom.attached.buttons
-          -#         = i.label :image, '変更', class: 'ui green button'
-          -#         = i.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onchange: "addImg(event, 'preview4')"
-          -#         .or
-          -#         %button.ui.red.button.delete-preview  削除
+            .column
+              .ui.card
+                .image
+                  = image_tag 'noimage.png', class: "change-image", id: "img-preview4"
+                .contents
+                  .ui.bottom.attached.buttons
+                    = form.label :image, '変更', class: 'ui green button'
+                    = form.file_field :image, type: 'file', class: 'change-file', style: "display:none;", onchange: "addImg(event, 'preview4')"
+                    .or
+                    %button.ui.red.button.delete-preview 削除
 :javascript
   // 画像追加
   function addImg(event, targetId) {
@@ -37,6 +36,18 @@
     // ボタン変更
     let imgAddBtn = document.getElementById("preview-btn"+targetId);
     imgAddBtn.remove(); // 元のボタンを削除
+    // ボタン要素
+    let changeBottons = `
+                          <div class="contents">
+                            <div class="ui button attached buttons">
+                              <label class="ui green button">変更</label>
+                              <div class="or"></div>
+                              <button class="ui red button">削除</button>
+                            </div>
+                          </div>
+                        `
+    // 要素追加
+    document.getElementById("preview-img"+targetId).insertAdjacentHTML("afterend", changeBottons)
   }
 
   // 画像削除
