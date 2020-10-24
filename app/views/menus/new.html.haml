@@ -31,7 +31,7 @@
     let changeBottons = `
                           <div class="contents">
                             <div class="ui bottom attached buttons" id="preview-btn${targetId}">
-                              <label class="ui green button" for="preview-file${targetId}">画像を追加</label>
+                              <label class="ui green button" for="preview-file${targetId}">変更</label>
                               <input type="file" style="display:none;" class="previewfile" id="previewfile${targetId}" onchange="addImg(event, ${targetId}})"></input>
                               <div class="or"></div>
                               <div class="ui red button" onclick="deleteImg(event, ${targetId})">削除</div>
@@ -55,7 +55,7 @@
     imgAddBtn.remove(); // 元のボタンを削除
     // ボタン要素
     let changeBottons = `
-                          <label class="ui bottom attached button" id="preview-btn${targetId}" for="preview-file${targetId}">変更</lavel>
+                          <label class="ui bottom attached button" id="preview-btn${targetId}" for="preview-file${targetId}">画像を追加</lavel>
                         `
     // 要素追加
     document.getElementById("preview-img"+targetId).insertAdjacentHTML("afterend", changeBottons)
