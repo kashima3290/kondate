@@ -34,7 +34,7 @@
                               <label class="ui green button" for="preview-file${targetId}">変更</label>
                               <input type="file" style="display:none;" class="previewfile" id="previewfile${targetId}" onchange="addImg(event, ${targetId}})"></input>
                               <div class="or"></div>
-                              <button class="ui red button" onchange="deleteImg(event, ${targetId}})">削除</button>
+                              <div class="ui red button" onclick="deleteImg(event, ${targetId})">削除</div>
                             </div>
                           </div>
                         `
@@ -44,4 +44,9 @@
 
   // 画像削除
   function deleteImg(event, targetId){
+    // input file の中身を削除
+    let file = document.getElementById("preview-file"+targetId);
+    file.value = "";
+    let previewImageSrc = "/asset/noimage.png";
+    // src入れ替え
   }
