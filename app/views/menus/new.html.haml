@@ -16,10 +16,20 @@
     .ui.grid.container
       .six.wide.column
         .ui.form.container
-          .field{style: "padding-top: 30px;"}
+          .field{style: "padding-top: 10px;"}
             %label 料理名
             = form.text_field :name, placeholder: "ハンバーグ~"
-      
+      .six.wide.column
+        .ui.form.container
+          .field{style: "padding-top: 10px;"}
+            %label ジャンル
+            = form.text_field :genre, placeholder: "魚、肉"
+      .sixteen.wide.column
+        .ui.form.container
+          .field
+            %label 説明
+            = form.text_area :text, placeholder: "材料：〜"
+        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px; margin-bottom: 10px;"
 
 :javascript
   // 画像追加
