@@ -12,10 +12,8 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
-      binding.pry
       redirect_to root_path
     else
-      binding.pry
       render :new
     end
   end
@@ -34,6 +32,6 @@ class MenusController < ApplicationController
 
   private
   def menu_params
-    params.require(:menu).permit(:name, :genre, :text, menu_images: []).merge(user_id: current_user.id)
+    params.require(:menu).permit(:name, :genre, :text, menu_images_attributes: [:image]).merge(user_id: current_user.id)
   end
 end
