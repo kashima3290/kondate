@@ -13,7 +13,8 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to root_path
     else
-      render :edit
+      # binding.pry
+      render :new
     end
   end
 
@@ -31,6 +32,6 @@ class MenusController < ApplicationController
 
   private
   def menu_params
-    params.require(:menu).permit(:name, :genre, :text, user_id: current_user.id, images: [])
+    params.require(:menu).permit(:name, :genre, :text, images: [:image]).merge(user_id: current_user.id)
   end
 end
