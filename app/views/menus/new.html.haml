@@ -4,14 +4,14 @@
     .ui.form.grid.container{style: "padding-top: 30px;"}
       .field
         %label 写真
-      = form.fields_for :images do |image|
+      = form.fields_for :menu_images do |image|
         .doubling.four.column.row
           - 4.times do |i|
             .column
               .ui.card
                 .image
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
-                  = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
+                  = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}", name: ":menu_images[]"
                   = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})"
     .ui.grid.container
       .six.wide.column
