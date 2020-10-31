@@ -1,9 +1,12 @@
 %div
   = render "shared/header"
-  = form_with model: @menu do |form|
+  = form_with model: @menu, local: true do |form|
     .ui.form.grid.container{style: "padding-top: 30px;"}
-      .field
+      .required.inline.field
         %label 写真
+      - if @menu.errors.details[:menu_images].present?
+        .ui.left.pointing.red.basic.label
+          = "画像を少なくとも一枚追加してください"
       = form.fields_for :menu_images do |image|
         .doubling.four.column.row
           - 4.times do |i|
@@ -15,23 +18,26 @@
                   = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})"
     .ui.stackable.three.column.grid.container
       .column
-        .ui.form.container
-          .field{style: "padding-top: 10px;"}
+        .ui.form
+          .required.inline.field
             %label 料理名
-            = form.text_field :name, placeholder: "ハンバーグ~"
+            - if @menu.errors.details[:name].present?
+              .ui.left.pointing.red.basic.label
+                = "料理名の入力をしてください"
+          = form.text_field :name, placeholder: "ハンバーグ~"
       .column
-        .ui.form.container
-          .field{style: "padding-top: 10px;"}
+        .ui.form
+          .inline.field
             %label ジャンル
-            = form.text_field :genre, placeholder: "魚、肉"
+          = form.text_field :genre, placeholder: "魚、肉"
       .column
-        .ui.form.container
-          .field{style: "padding-top: 10px;"}
+        .ui.form
+          .inline.field
             %label 関連URL
-            = form.text_field :site, placeholder: "http//~"
+          = form.text_field :site, placeholder: "http//~"
     .ui.grid.container
       .sixteen.wide.column
-        .ui.form.container
+        .ui.form
           .field
             %label メモ
             = form.text_area :text, placeholder: "材料：〜"

@@ -14,6 +14,9 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to root_path
     else
+      if @menu.errors.details[:menu_images].present?
+        @menu.menu_images.build
+      end
       render :new
     end
   end

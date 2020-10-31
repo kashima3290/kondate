@@ -13,7 +13,7 @@
                       = f.label :icon, "変更"
                       = f.file_field :icon, style: "display:none;", class: "change-file"
               - if current_user.icon.present?
-                = image_tag current_user.icon, class: "change-image"
+                = image_tag current_user.icon.url, class: "change-image"
               - else
                 = image_tag 'dummyhuman.png', class: "change-image"
       .ten.wide.column
