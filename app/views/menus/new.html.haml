@@ -13,17 +13,23 @@
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
                   = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}", name: ":menu_images[]"
                   = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})"
-    .ui.grid.container
-      .six.wide.column
+    .ui.stackable.three.column.grid.container
+      .column
         .ui.form.container
           .field{style: "padding-top: 10px;"}
             %label 料理名
             = form.text_field :name, placeholder: "ハンバーグ~"
-      .six.wide.column
+      .column
         .ui.form.container
           .field{style: "padding-top: 10px;"}
             %label ジャンル
             = form.text_field :genre, placeholder: "魚、肉"
+      .column
+        .ui.form.container
+          .field{style: "padding-top: 10px;"}
+            %label 関連URL
+            = form.text_field :site, placeholder: "http//~"
+    .ui.grid.container
       .sixteen.wide.column
         .ui.form.container
           .field
