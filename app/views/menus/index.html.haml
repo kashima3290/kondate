@@ -1,17 +1,14 @@
 = render "shared/header"
-- @menus.each do |menu|
-  .ui.grid.container
-    .doubling.four.column.row
-      .column
-        .ui.link.cards{style: "margin-top: 10px;"}
-          .card
-            .image
-              = image_tag 'dummyhuman.png'
-            .content
-              .header hello
-              .meta
-                %a 友達
-              .description Matthew is an interior designer living in New York.
+.ui.four.stackable.cards{style: "margin: 10px 10px;"}
+  - @menus.each do |menu|
+    .card
+      .image
+        = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
+      .content
+        .header
+          = menu.name
+        .meta
+        .description Matthew is an interior designer living in New York.Matthew is an interior designer living in New York.
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
