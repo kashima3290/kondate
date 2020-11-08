@@ -1,14 +1,16 @@
 = render "shared/header"
 .ui.four.stackable.cards{style: "margin: 10px 10px;"}
   - @menus.each do |menu|
-    .card
+    %a.orange.card
       .image
         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
       .content
         .header
           = menu.name
         .meta
-        .description Matthew is an interior designer living in New York.Matthew is an interior designer living in New York.
+        .description{style: "height: 40px;"}
+          - if menu.text.present?
+            = menu.text
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
