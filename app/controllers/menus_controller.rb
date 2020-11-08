@@ -12,13 +12,11 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
-      binding.pry
       redirect_to root_path
     else
       if @menu.errors.details[:menu_images].present?
         @menu.menu_images.build
       end
-      binding.pry
       render :new
     end
   end
