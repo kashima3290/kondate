@@ -43,6 +43,7 @@ group :development do
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry-byebug'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
@@ -66,3 +67,4 @@ gem 'devise'
 gem 'rails-i18n'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'carrierwave'

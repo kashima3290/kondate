@@ -1,9 +1,13 @@
 %div
   = render "shared/header"
-  = form_with model: @menu do |form|
-    .ui.grid.container{style: "padding-top: 30px;"}
-      %h2 写真
-      = form.fields_for :images do |image|
+  = form_with model: @menu, local: true do |form|
+    .ui.form.grid.container{style: "padding-top: 30px;"}
+      .required.inline.field
+        %label 写真
+      - if @menu.errors.details[:menu_images].present?
+        .ui.left.pointing.red.basic.label
+          = "画像を少なくとも一枚追加してください"
+      = form.fields_for :menu_images do |image|
         .doubling.four.column.row
           - 4.times do |i|
             .column
@@ -11,7 +15,33 @@
                 .image
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
                   = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
-                  = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})"
+                  = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
+    .ui.stackable.three.column.grid.container
+      .column
+        .ui.form
+          .required.inline.field
+            %label 料理名
+            - if @menu.errors.details[:name].present?
+              .ui.left.pointing.red.basic.label
+                = "料理名の入力をしてください"
+          = form.text_field :name, placeholder: "ハンバーグ~"
+      .column
+        .ui.form
+          .inline.field
+            %label ジャンル
+          = form.text_field :genre, placeholder: "魚、肉"
+      .column
+        .ui.form
+          .inline.field
+            %label 関連URL
+          = form.text_field :site, placeholder: "http//~"
+    .ui.grid.container
+      .sixteen.wide.column
+        .ui.form
+          .field
+            %label メモ
+            = form.text_area :text, placeholder: "材料：〜"
+        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px; margin-bottom: 10px;"
 
 :javascript
   // 画像追加

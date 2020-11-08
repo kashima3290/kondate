@@ -1,5 +1,5 @@
 .meal-image
-  .ui.text.container.center.aligned.grid{:style => "padding-top: 5%;"}
+  .ui.text.container.center.aligned.grid{style: "padding-top: 5%;"}
     .column
       %h2.ui.header ログイン
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f|

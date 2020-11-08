@@ -6,6 +6,7 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
+    @menu.menu_images.build # file_field作成
   end
 
   def create
@@ -13,7 +14,10 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to root_path
     else
-      render :edit
+      if @menu.errors.details[:menu_images].present?
+        @menu.menu_images.build
+      end
+      render :new
     end
   end
 
@@ -31,6 +35,6 @@ class MenusController < ApplicationController
 
   private
   def menu_params
-    params.require(:menu).permit(:name, :genre, :text, :user_id, images: [])
+    params.require(:menu).permit(:name, :genre, :site, :text, menu_images_attributes: [:image]).merge(user_id: current_user.id)
   end
 end
