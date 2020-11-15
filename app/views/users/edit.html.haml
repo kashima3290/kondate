@@ -1,22 +1,23 @@
 %div
   = render "shared/header"
   = form_with model: @user, local: true, method: :put do |f|
-    .ui.container.grid{style: "padding-top: 7%;"}
-      .six.wide.column
-        .ui.special.cards
-          .card
-            .blurring.dimmable.image
-              .ui.dimmer
-                .content
-                  .center
-                    .ui.inverted.button
-                      = f.label :icon, "変更"
-                      = f.file_field :icon, style: "display:none;", class: "change-file"
-              - if current_user.icon.present?
-                = image_tag current_user.icon.url, class: "change-image"
-              - else
-                = image_tag 'dummyhuman.png', class: "change-image"
-      .ten.wide.column
+    .ui.stackable.two.column.grid{style: "padding-top: 7%;"}
+      .column
+        .ui.container.card
+          .image
+            - if current_user.icon.present?
+              = image_tag current_user.icon.url, class: "ui medium rounded image change-image", id: "preview-img"
+              .contents
+                .ui.bottom.attached.buttons{id: "preview-btn"}
+                  %label.ui.green.button{for: "preview-file"} 変更
+                  - f.file_field id: "previewfile", onchange: "addImg(event})", style: "display:none;"
+                  .or
+                  .ui.red.button{onclick: "deleteImg(event)"} 削除
+            - else
+              = image_tag 'dummyhuman.png', class: "ui medium rounded image change-image", id: "preview-img"
+              = f.label :icon, '画像を追加', class: 'ui bottom attached button', for: "preview-file", id: "preview-btn"
+            = f.file_field :icon, type: 'file', class: 'preview-file', id: "preview-file", style: "display: none;", onchange: "addImg(event)"
+      .column
         .ui.container.form
           .required.field
             %label 名前
@@ -30,3 +31,51 @@
             = f.text_area :profile, placeholder: "私の名前は〜"
         .ui.text.container.center.aligned{style: "margin-top: 20px;"}
           = f.submit "変更", class: "ui primary button"
+
+:javascript
+  // 画像追加
+  function addImg(event) {
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    let previewImage = document.getElementById("preview-img");
+    // src入れ替え
+    reader.onload = function(event) {
+      previewImage.setAttribute("src", reader.result);
+    };
+    reader.readAsDataURL(file);
+    // ボタン変更
+    let imgAddBtn = document.getElementById("preview-btn");
+    imgAddBtn.remove(); // 元のボタンを削除
+    // ボタン要素
+    let changeBottons = `
+                          <div class="contents">
+                            <div class="ui bottom attached buttons" id="preview-btn">
+                              <label class="ui green button" for="preview-file">変更</label>
+                              <input type="file" style="display:none;" class="previewfile" id="previewfile" onchange="addImg(event})"></input>
+                              <div class="or"></div>
+                              <div class="ui red button" onclick="deleteImg(event)">削除</div>
+                            </div>
+                          </div>
+                        `
+    // 要素追加
+    document.getElementById("preview-img").insertAdjacentHTML("afterend", changeBottons)
+  }
+
+  // 画像削除
+  function deleteImg(event){
+    let previewImage = document.getElementById("preview-img");
+    // input file の中身を削除
+    let file = document.getElementById("preview-file");
+    file.value = "";
+    // src入れ替え
+    previewImage.setAttribute("src", "/assets/dummyhuman-0f1e93d53f74798c8b2236b7eed35c01e911199169c6dab4fd70f62810973632.png");
+    // ボタン変更
+    let imgAddBtn = document.getElementById("preview-btn");
+    imgAddBtn.remove(); // 元のボタンを削除
+    // ボタン要素
+    let changeBottons = `
+                          <label class="ui bottom attached button" id="preview-btn" for="preview-file">画像を追加</lavel>
+                        `
+    // 要素追加
+    document.getElementById("preview-img").insertAdjacentHTML("afterend", changeBottons)
+  }
