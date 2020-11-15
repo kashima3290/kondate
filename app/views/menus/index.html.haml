@@ -1,16 +1,16 @@
 = render "shared/header"
 .ui.four.stackable.cards{style: "margin: 10px 10px;"}
   - @menus.each do |menu|
-    %a.orange.card
-      .image
+    .orange.card
+      %a.image
         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
       .content
-        .header
+        %a.header
           = menu.name
         .meta
         .description{style: "height: 40px;"}
           - if menu.text.present?
-            = menu.text
+            %a= menu.text
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
