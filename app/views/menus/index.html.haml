@@ -2,7 +2,7 @@
 .ui.four.stackable.cards{style: "margin: 10px 10px;"}
   - @menus.each do |menu|
     .orange.card
-      %a.image
+      = link_to menu_path(menu.id), {class: "image"} do
         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
       .content
         %a.header
