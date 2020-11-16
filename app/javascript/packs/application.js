@@ -17,6 +17,12 @@ jQuery(document).on('turbolinks:load', function(){
   $('.special.cards .image').dimmer({
     on: 'hover'
   });
+  $('#right-btn').click(function(){
+    $('.shape').shape('flip right');
+  });
+  $('#left-btn').click(function(){
+    $('.shape').shape('flip left');
+  });
 })
 
 $(function(){
