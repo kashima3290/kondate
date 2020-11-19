@@ -5,17 +5,17 @@
       .ui.shape
         .sides
           .active.side
-            .ui.centered.card
+            .ui.fluid.card
               .image
-                = image_tag @menu.menu_images[0].image.url, style: "height: 230px;"
+                = image_tag @menu.menu_images[0].image.url
           .side
-            .ui.centered.card
+            .ui.centered.card{style: "width: 400px;"}
               .image
-                = image_tag 'dummyhuman.png', style: "height: 230px;"
+                = image_tag 'dummyhuman.png', style: "height: 300px"
           .side
-            .ui.centered.card
+            .ui.centered.card{style: "width: 400px;"}
               .image
-                = image_tag 'dummyhuman.png', style: "height: 230px;"
+                = image_tag 'dummyhuman.png', style: "height: 300px"
     .sixteen.wide.column
       .ui.ignored.icon.direction.buttons
         .ui.button{id: "left-btn"}
