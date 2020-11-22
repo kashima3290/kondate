@@ -1,24 +1,25 @@
 %div
   = render "shared/header"
-  .ui.center.aligned.grid
-    .sixteen.wide.column
+  .ui.stackable.two.column.center.aligned.grid{style: "padding-top: 7%;"}
+    .container.column
       .ui.shape
         .sides
           .active.side
-            .ui.fluid.card
+            .ui.centered.card
               .image
-                = image_tag @menu.menu_images[0].image.url
+                = image_tag @menu.menu_images[0].image.url, style: "height: 300px"
           .side
-            .ui.centered.card{style: "width: 400px;"}
+            .ui.centered.card
               .image
                 = image_tag 'dummyhuman.png', style: "height: 300px"
           .side
-            .ui.centered.card{style: "width: 400px;"}
+            .ui.centered.card
               .image
                 = image_tag 'dummyhuman.png', style: "height: 300px"
-    .sixteen.wide.column
-      .ui.ignored.icon.direction.buttons
+      %h1
+      .ui.container.two.buttons
         .ui.button{id: "left-btn"}
           %i.left.long.arrow.icon
         .ui.button{id: "right-btn"}
           %i.right.long.arrow.icon
+    .column
