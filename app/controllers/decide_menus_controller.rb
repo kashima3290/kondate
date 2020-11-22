@@ -1,0 +1,2 @@
+class DecideMenusController < ApplicationController
+end
