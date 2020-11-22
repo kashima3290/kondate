@@ -8,7 +8,7 @@
         = link_to menu_path(menu.id), {class: "header"} do
           = menu.name
         .meta
-        .description{style: "height: 40px;"}
+        .description{style: "height: 40px; font-size: 12px;"}
           - if menu.text.present?
             = link_to menu_path(menu.id), {class: "header"} do
               = menu.text
