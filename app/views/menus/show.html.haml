@@ -1,5 +1,8 @@
 %div
   = render "shared/header"
+  %h2.ui.container.header
+    .content
+      = @menu.name
   .ui.stackable.two.column.center.aligned.grid{style: "padding-top: 7%;"}
     .container.column
       .ui.shape
@@ -7,15 +10,14 @@
           .active.side
             .ui.centered.card
               .image
-                = image_tag @menu.menu_images[0].image.url, style: "height: 300px"
-          .side
-            .ui.centered.card
-              .image
-                = image_tag 'dummyhuman.png', style: "height: 300px"
-          .side
-            .ui.centered.card
-              .image
-                = image_tag 'dummyhuman.png', style: "height: 300px"
+                = image_tag @menu.menu_images[0].image.url, style: "height: 280px"
+          - if @menu.menu_images[1].image.url.present?
+            - @menu.menu_images.each_with_index do |i, index|
+              - next if index == 0
+              .side
+                .ui.centered.card
+                  .image
+                    = image_tag @menu.menu_images[index].image.url, style: "height: 280px"
       %h1
       .ui.container.two.buttons
         .ui.button{id: "left-btn"}
