@@ -31,7 +31,7 @@
           %p= @menu.genre
         - if @menu.site.present?
           .ui.dividing.header 関連URI
-          %a= @menu.site
+          %a{href: @menu.site}= @menu.site
         - if @menu.text.present?
           .ui.dividing.header 関連URI
           %p= @menu.text
