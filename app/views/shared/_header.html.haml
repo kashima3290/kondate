@@ -1,5 +1,5 @@
-%div
-  .ui.orange.inverted.menu{style: "height: 60px;"}
+%div{style: "height: 60px;"}
+  .ui.top.fixed.orange.inverted.menu{style: "height: 60px;"}
     .ui.dropdown.item
       - if current_user.icon.present?
         = image_tag current_user.icon.url, class: "ui mini circular image"

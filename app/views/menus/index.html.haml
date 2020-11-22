@@ -2,15 +2,16 @@
 .ui.four.stackable.cards{style: "margin: 10px 10px;"}
   - @menus.each do |menu|
     .orange.card
-      %a.image
+      = link_to menu_path(menu.id), {class: "image"} do
         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
       .content
-        %a.header
+        = link_to menu_path(menu.id), {class: "header"} do
           = menu.name
         .meta
-        .description{style: "height: 40px;"}
+        .description{style: "font-size: 12px;"}
           - if menu.text.present?
-            %a= menu.text
+            = link_to menu_path(menu.id), {class: "header"} do
+              = truncate(menu.text, length: 150)
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
