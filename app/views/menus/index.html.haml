@@ -8,10 +8,10 @@
         = link_to menu_path(menu.id), {class: "header"} do
           = menu.name
         .meta
-        .description{style: "height: 40px; font-size: 12px;"}
+        .description{style: "font-size: 12px;"}
           - if menu.text.present?
             = link_to menu_path(menu.id), {class: "header"} do
-              = menu.text
+              = truncate(menu.text, length: 150)
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
