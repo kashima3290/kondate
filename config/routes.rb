@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   }
   root "menus#index"
   resources :menus
-  resources :decide_menus
+  resources :decide_menus do
+    collection do
+      get :random_menu
+    end
+  end
   resources :users
 end

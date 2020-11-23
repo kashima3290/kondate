@@ -1,8 +1,7 @@
 = render "shared/header"
 .ui.text.container.center.aligned.grid
   %h3{style: "margin-top: 30px"} どのジャンルから選ぶ？
-  %a.fluid.ui.gray.big.button
-    ランダム
+  = link_to "ランダム", random_menu_decide_menus_path, class: "fluid ui gray big button"
   %a.fluid.ui.yellow.big.button{style: "margin-top: 40px"}
     主食
   %a.fluid.ui.red.big.button{style: "margin-top: 40px"}
