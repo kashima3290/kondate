@@ -1,7 +1,7 @@
 %div
   = render "shared/header"
   = form_with model: @menu, local: true do |form|
-    .ui.form.grid.container{style: "padding-top: 30px;"}
+    .ui.form.grid.container{style: "margin-top: 80px;"}
       .required.inline.field
         %label 写真
       - if @menu.errors.details[:menu_images].present?
@@ -41,7 +41,7 @@
           .field
             %label メモ
             = form.text_area :text, placeholder: "材料：〜"
-        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px; margin-bottom: 10px;"
+        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px;"
 
 :javascript
   // 画像追加
