@@ -12,7 +12,7 @@
         = link_to "メールアドレス・パスワード変更", edit_user_registration_path, class: "item"
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item"
     = link_to "一覧", menus_path, class: "item"
-    = link_to "決める", '#',class: "item"
+    = link_to "決める", decide_menus_path,class: "item"
     .right.menu
       .item
         .ui.transparent.icon.input
