@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   }
   root "menus#index"
   resources :menus
+  resources :decide_menus
   resources :users
 end
