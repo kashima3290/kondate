@@ -1,7 +1,7 @@
 %div
   = render "shared/header"
   = form_with model: @menu, local: true do |form|
-    .ui.form.grid.container{style: "margin-top: 80px;"}
+    .ui.form.grid.container{style: "margin-top: 10px;"}
       .required.inline.field
         %label 写真
       - if @menu.errors.details[:menu_images].present?
