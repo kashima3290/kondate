@@ -29,7 +29,7 @@
         .ui.form
           .inline.field
             %label ジャンル
-          = form.text_field :genre, placeholder: "魚、肉"
+          = form.select :genre, ['主食', '主菜', '野菜', '一品もの', 'デザート', 'その他', '外食'], {include_blank: 'ジャンル選択'}, class: "ui search dropdown"
       .column
         .ui.form
           .inline.field
