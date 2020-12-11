@@ -7,6 +7,9 @@ class DecideMenusController < ApplicationController
     # 引数が空なら全てのメニューから選択
     if genre = ""
       @random_menu = Menu.includes(:user).order("RAND()").first
+    else
+    # 引数があるなら、genreの引数を絞り込み
+      @random_menu= Menu.includes(:user).where(price: genre).order("RAND()").first
     end
   end
 
