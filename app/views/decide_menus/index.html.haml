@@ -2,17 +2,10 @@
 .ui.text.container.center.aligned.grid
   %h3{style: "margin-top: 30px"} どのジャンルから選ぶ？
   = link_to "ランダム", random_menu_decide_menus_path, class: "fluid ui gray big button"
-  %a.fluid.ui.yellow.big.button{style: "margin-top: 40px"}
-    主食
-  %a.fluid.ui.red.big.button{style: "margin-top: 40px"}
-    主菜
-  %a.fluid.ui.green.big.button{style: "margin-top: 40px"}
-    野菜
-  %a.fluid.ui.orange.big.button{style: "margin-top: 40px"}
-    一品もの
-  %a.fluid.ui.gray.pink.big.button{style: "margin-top: 40px"}
-    デザート
-  %a.fluid.ui.purple.big.button{style: "margin-top: 40px"}
-    その他
-  %a.fluid.ui.brown.big.button{style: "margin-top: 40px"}
-    外食
+  = link_to "主食", random_menu_decide_menus_path("主食"), class: "fluid ui yellow big button", style: "margin-top: 40px"
+  = link_to "主菜", random_menu_decide_menus_path("主菜"), class: "fluid ui red big button", style: "margin-top: 40px"
+  = link_to "野菜", random_menu_decide_menus_path("野菜"), class: "fluid ui green big button", style: "margin-top: 40px"
+  = link_to "一品もの", random_menu_decide_menus_path("一品もの"), class: "fluid ui orange big button", style: "margin-top: 40px"
+  = link_to "デザート", random_menu_decide_menus_path("野菜"), class: "fluid ui pink big button", style: "margin-top: 40px"
+  = link_to "その他", random_menu_decide_menus_path("その他"), class: "fluid ui purple big button", style: "margin-top: 40px"
+  = link_to "その他", random_menu_decide_menus_path("外食"), class: "fluid ui brown big button", style: "margin-top: 40px"

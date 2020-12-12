@@ -9,7 +9,7 @@ class DecideMenusController < ApplicationController
       @random_menu = Menu.includes(:user).order("RAND()").first
     else
     # 引数があるなら、genreの引数を絞り込み
-      @random_menu= Menu.includes(:user).where(price: genre).order("RAND()").first
+      @random_menu= Menu.includes(:user).where(genre: genre).order("RAND()").first
     end
   end
 
