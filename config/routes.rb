@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :decide_menus do
     collection do
       get :random_menu
+      get :maibn_dish_menu
+      get :vegetable_menu
+      get :one_item_menu
+      get :dessert_menu
+      get :other_menu
+      get :eating_out
     end
   end
   resources :users
