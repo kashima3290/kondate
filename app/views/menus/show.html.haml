@@ -11,14 +11,14 @@
             .active.side
               .ui.centered.card
                 .image
-                  = image_tag @menu.menu_images[0].image.url, style: "height: 280px"
+                  = image_tag @menu.menu_images[0].image.url
             - if @menu.menu_images[1].present?
               - @menu.menu_images.each_with_index do |i, index|
                 - next if index == 0
                 .side
                   .ui.centered.card
                     .image
-                      = image_tag @menu.menu_images[index].image.url, style: "height: 280px"
+                      = image_tag @menu.menu_images[index].image.url
         %h1
         .ui.container.two.buttons
           .ui.button{id: "left-btn"}
