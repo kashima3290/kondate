@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :menus
   resources :decide_menus do
     collection do
-      get :staple_food
+      get :staple_food_menu
       get :random_menu
       get :maibn_dish_menu
       get :vegetable_menu
