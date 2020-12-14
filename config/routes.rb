@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     collection do
       get :staple_food_menu
       get :random_menu
-      get :maibn_dish_menu
+      get :main_dish_menu
       get :vegetable_menu
       get :one_item_menu
       get :dessert_menu
