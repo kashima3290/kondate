@@ -7,6 +7,10 @@ class DecideMenusController < ApplicationController
     @random_menu = Menu.includes(:user).order("RAND()").first
   end
 
+  def staple_food
+    @random_menu= Menu.includes(:user).where(genre: '主食').order("RAND()").first
+  end
+
   def main_dish_menu
     @random_menu= Menu.includes(:user).where(genre: '主菜').order("RAND()").first
   end
