@@ -2,15 +2,19 @@
 .ui.four.stackable.cards{style: "margin: 10px 10px;"}
   - @menus.each do |menu|
     .orange.card
-      = link_to menu_path(menu.id), {class: "image"} do
+      = link_to menu_path(menu.id), {class: "ui image"} do
         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
       .content
         = link_to menu_path(menu.id), {class: "header"} do
           = menu.name
+        .ui.red.ribbon.label
+          = menu.genre
+        -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
+        -#   = menu.genre
         .meta
         .description{style: "font-size: 12px;"}
           - if menu.text.present?
-            = link_to menu_path(menu.id), {class: "header"} do
+            = link_to menu_path(menu.id), {class: "text"} do
               = truncate(menu.text, length: 150)
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}

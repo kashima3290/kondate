@@ -6,5 +6,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :encrypted_password, presence: true
   mount_uploader :icon, ImageUploader
-  has_many :menus
+  has_many :menus, dependent: :destroy
 end

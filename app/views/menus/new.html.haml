@@ -1,7 +1,7 @@
 %div
   = render "shared/header"
   = form_with model: @menu, local: true do |form|
-    .ui.form.grid.container{style: "padding-top: 30px;"}
+    .ui.form.grid.container{style: "margin-top: 10px;"}
       .required.inline.field
         %label 写真
       - if @menu.errors.details[:menu_images].present?
@@ -29,7 +29,7 @@
         .ui.form
           .inline.field
             %label ジャンル
-          = form.text_field :genre, placeholder: "魚、肉"
+          = form.select :genre, ['主食', '主菜', '野菜', '一品もの', 'デザート', 'その他', '外食'], {include_blank: 'ジャンル選択'}, class: "ui search dropdown"
       .column
         .ui.form
           .inline.field
@@ -41,7 +41,7 @@
           .field
             %label メモ
             = form.text_area :text, placeholder: "材料：〜"
-        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px; margin-bottom: 10px;"
+        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px;"
 
 :javascript
   // 画像追加

@@ -1,5 +1,5 @@
-%div{style: "height: 60px;"}
-  .ui.top.fixed.orange.inverted.menu{style: "height: 60px;"}
+%div{style: "height: 70px;"}
+  .ui.top.fixed.orange.inverted.menu
     .ui.dropdown.item
       - if current_user.icon.present?
         = image_tag current_user.icon.url, class: "ui mini circular image"
@@ -11,8 +11,8 @@
         = link_to "ユーザー情報編集", edit_user_path(current_user.id), class: "item"
         = link_to "メールアドレス・パスワード変更", edit_user_registration_path, class: "item"
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item"
-    = link_to "メニュー", menus_path, class: "item"
-    %a.item 投稿
+    = link_to "一覧", menus_path, class: "item"
+    = link_to "決める", decide_menus_path,class: "item"
     .right.menu
       .item
         .ui.transparent.icon.input

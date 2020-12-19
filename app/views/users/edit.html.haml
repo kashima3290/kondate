@@ -1,7 +1,7 @@
 %div
   = render "shared/header"
   = form_with model: @user, local: true, method: :put do |f|
-    .ui.stackable.two.column.grid{style: "padding-top: 7%;"}
+    .ui.stackable.two.column.container.grid{style: "padding-top: 30px;"}
       .column
         .ui.container.card
           .image
@@ -25,12 +25,12 @@
               - if @user.errors.any?
                 .ui.pointing.below.red.basic.label 名前を入力してください
               %br
-              = f.text_field :name, placeholder: "guest", style: "width: 200px;"
+              = f.text_field :name, placeholder: "guest"
           .field
             %label コメント
             = f.text_area :profile, placeholder: "私の名前は〜"
-        .ui.text.container.center.aligned{style: "margin-top: 20px;"}
-          = f.submit "変更", class: "ui primary button"
+        .ui.text.center.aligned{style: "margin-top: 20px;"}
+          = f.submit "更新", class: "fluid ui primary button"
 
 :javascript
   // 画像追加

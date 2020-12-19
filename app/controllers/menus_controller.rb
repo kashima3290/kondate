@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
   def index
-    @menus = Menu.all.order(created_at: :desc)
+    @menus = Menu.includes(:user).order(created_at: :desc)
   end
 
   def new
