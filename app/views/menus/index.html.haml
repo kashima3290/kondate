@@ -16,7 +16,8 @@
           - if menu.text.present?
             = link_to menu_path(menu.id), {class: "text"} do
               = truncate(menu.text, length: 150)
+.ui.column.centered.grid
+  = paginate @menus
 = link_to new_menu_path do
   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
     %i.plus.icon
-= paginate @menus
