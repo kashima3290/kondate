@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     passwords: "users/passwords"
   }
   root "menus#index"
+  resources :users
   resources :menus
   resources :decide_menus do
     collection do
@@ -18,5 +19,4 @@ Rails.application.routes.draw do
       get :eating_out
     end
   end
-  resources :users
 end
