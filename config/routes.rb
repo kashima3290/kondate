@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   }
   root "menus#index"
   resources :users
-  resources :menus
+  resources :menus do
     collection do
       get :menu_search
     end
+  end
   resources :decide_menus do
     collection do
       get :staple_food_menu
