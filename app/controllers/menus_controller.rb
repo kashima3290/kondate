@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
   def index
-    @menus = current_user.menus.order(created_at: :desc).page(params[:page]).per(8)
+    @menus = current_user.menus.includes(:menu_images).order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def new
