@@ -25,12 +25,5 @@ jQuery(document).on('turbolinks:load', function(){
   });
 })
 
-$(function(){
-  $('.ui.dropdown').dropdown();
-  $('.special.cards .image').dimmer({
-    on: 'hover'
-  });
-})
-
 //= require_directory .
 //= require_tree .
