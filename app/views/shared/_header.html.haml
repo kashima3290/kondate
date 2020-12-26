@@ -15,7 +15,7 @@
     = link_to "決める", decide_menus_path,class: "item"
     .right.menu
       .item{style: "width: 35vw;"}
-        = search_form_for @search, html: { class: "ui transparent icon input" }, url: menu_search_menus_path do |f|
+        = search_form_for @q, html: { class: "ui transparent icon input" }, url: menu_search_menus_path do |f|
           = f.text_field :name_cont, placeholder: "メニュー名", style: "width: 20vw;"
           = button_tag type: 'submit', class: "ui inverted circular icon button" do
             %i.search.link.icon
