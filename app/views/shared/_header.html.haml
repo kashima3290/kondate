@@ -1,6 +1,6 @@
 %div{style: "height: 70px;"}
   .ui.top.fixed.orange.inverted.menu
-    .ui.dropdown.item
+    .ui.dropdown.item.dropdown-header-user
       - if current_user.icon.present?
         = image_tag current_user.icon.url, class: "ui mini circular image"
       - else
@@ -14,7 +14,8 @@
     = link_to "一覧", menus_path, class: "item"
     = link_to "決める", decide_menus_path,class: "item"
     .right.menu
-      .item
-        .ui.transparent.icon.input
-          %input{placeholder: "Search...", type: "text"}/
-          %i.search.link.icon
+      .item{style: "width: 35vw;"}
+        = search_form_for @q, html: { class: "ui transparent icon input" }, url: menu_search_menus_path do |f|
+          = f.text_field :name_cont, placeholder: "メニュー名", style: "width: 20vw;"
+          = button_tag type: 'submit', class: "ui inverted circular icon button" do
+            %i.search.link.icon
