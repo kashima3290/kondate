@@ -1,23 +1,51 @@
-= render "shared/header"
-.ui.four.stackable.cards{style: "margin: 10px 10px;"}
-  - @menus.each do |menu|
-    .orange.card
-      = link_to menu_path(menu.id), {class: "ui image"} do
-        = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
-      .content
-        = link_to menu_path(menu.id), {class: "header"} do
-          = menu.name
-        .ui.red.ribbon.label
-          = menu.genre
-        -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
-        -#   = menu.genre
-        .meta
-        .description{style: "font-size: 12px;"}
-          - if menu.text.present?
-            = link_to menu_path(menu.id), {class: "text"} do
-              = truncate(menu.text, length: 150)
-.ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
-  = paginate @menus
-= link_to new_menu_path do
-  %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
-    %i.plus.icon
+-# = render "shared/header"
+-# .ui.four.stackable.cards{style: "margin: 10px 10px;"}
+-#   - @menus.each do |menu|
+-#     .orange.card
+-#       = link_to menu_path(menu.id), {class: "ui image"} do
+-#         = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
+-#       .content
+-#         = link_to menu_path(menu.id), {class: "header"} do
+-#           = menu.name
+-#         .ui.red.ribbon.label
+-#           = menu.genre
+-#         -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
+-#         -#   = menu.genre
+-#         .meta
+-#         .description{style: "font-size: 12px;"}
+-#           - if menu.text.present?
+-#             = link_to menu_path(menu.id), {class: "text"} do
+-#               = truncate(menu.text, length: 150)
+-# .ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
+-#   = paginate @menus
+-# = link_to new_menu_path do
+-#   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
+-#     %i.plus.icon
+.previews
+  .slider
+    = image_tag 'noimage'
+    = image_tag 'sign'
+    = image_tag 'noimage'
+
+:javascript
+  $(function() {
+    $('.slider').slick({
+        prevArrow:'<i class="fa fa-angle-left arrow arrow-left"></i>',
+        nextArrow:'<i class="fa fa-angle-right arrow arrow-right"></i>',
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 800
+    });
+
+    $('.slick-dots li').on('mouseover', function() {
+      $('.slider').slick('goTo', $(this).index());
+    });
+  });
+
+:css
+  .slider img {
+      width: 100%;
+      height: 50vw;
+      object-fit: cover;
+  }

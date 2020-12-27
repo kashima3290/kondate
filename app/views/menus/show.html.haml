@@ -6,25 +6,13 @@
   .ui.container
     .ui.stackable.two.column.grid{style: "margin-top: 30px;"}
       .center.aligned.column
-        .ui.shape
-          .sides
-            .active.side
-              .ui.card
-                .image
-                  = image_tag @menu.menu_images[0].image.url
+        .previews
+          .slider
+            = image_tag @menu.menu_images[0].image.url
             - if @menu.menu_images[1].present?
               - @menu.menu_images.each_with_index do |i, index|
                 - next if index == 0
-                .side
-                  .ui.card
-                    .image
-                      = image_tag @menu.menu_images[index].image.url
-        %h1
-        .ui.container.two.buttons
-          .ui.button{id: "left-btn"}
-            %i.left.long.arrow.icon
-          .ui.button{id: "right-btn"}
-            %i.right.long.arrow.icon
+                = image_tag @menu.menu_images[index].image.url
       .column
         - if @menu.genre.present?
           .ui.dividing.header ジャンル
@@ -35,3 +23,26 @@
         - if @menu.text.present?
           .ui.dividing.header メモ
           %p= @menu.text
+
+:javascript
+  $(function() {
+    $('.slider').slick({
+        prevArrow:'<i class="fa fa-angle-left arrow arrow-left"></i>',
+        nextArrow:'<i class="fa fa-angle-right arrow arrow-right"></i>',
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 800
+    });
+
+    $('.slick-dots li').on('mouseover', function() {
+      $('.slider').slick('goTo', $(this).index());
+    });
+  });
+
+:css
+  .slider img {
+      width: 100%;
+      height: 50vh;
+      object-fit: cover;
+  }
