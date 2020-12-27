@@ -1,9 +1,14 @@
 %div
   = render "shared/header"
-  %h1.ui.container.header
-    .content
-      = @menu.name
   .ui.container
+    .ui.grid{style: "margin-top: 10px;"}
+      .two.column.row
+        .left.floated.column
+          .ui.huge.massive.grey.tag.label
+            = @menu.name
+        .right.floated.column
+          = link_to "編集する", edit_menu_path, class: "circular ui right floated green button"
+
     .ui.stackable.two.column.grid{style: "margin-top: 30px;"}
       .column
         .previews
