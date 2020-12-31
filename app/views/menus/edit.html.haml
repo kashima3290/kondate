@@ -28,9 +28,11 @@
                 .image
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
                   = form.label :menu_images, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
-                  = form.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
+              .image.file{id: "delete_input#{i}"}
+                = form.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
 
         = form.fields_for :menu_images, @menu.menu_images do |image|
+          = image.check_box :_destroy
           = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{image.index}", style: "display: none;", onchange: "addImg(event, #{image.index})", name: "menu[menu_images_attributes][#{image.index}][image]"
 
     .ui.stackable.three.column.grid.container
@@ -63,6 +65,11 @@
 :javascript
   // 画像追加
   function addImg(event, targetId) {
+    // 削除チェックボックスを取得し、あればfalseに変更
+    let delete_checkbox = document.getElementById("menu_menu_images_attributes_" + targetId + "__destroy");
+    if (delete_checkbox !== null) {
+        delete_checkbox.checked = false;
+    };
     let file = event.target.files[0];
     let reader = new FileReader();
     let previewImage = document.getElementById("preview-img"+targetId);
@@ -72,7 +79,7 @@
     };
     reader.readAsDataURL(file);
     // ボタン変更
-    let imgAddBtn = document.getElementById("preview-btn"+targetId);
+    let imgAddBtn = document.getElementById("preview-btn" + targetId);
     imgAddBtn.remove(); // 元のボタンを削除
     // ボタン要素
     let changeBottons = `
@@ -91,11 +98,18 @@
 
   // 画像削除
   function deleteImg(event, targetId){
-    let previewImage = document.getElementById("preview-img"+targetId);
-    // input file の中身を削除
-    let file = document.getElementById("preview-file"+targetId);
-    file.value = "";
+    // 削除チェックボックスを取得し、あればtrueに変更
+    delete_checkbox = document.getElementById("menu_menu_images_attributes_" + targetId + "__destroy");
+    // input file を削除
+    let file = document.getElementById("preview-file" + targetId);
+    let delete_input = document.getElementById("delete_input" + targetId);
+    if (delete_checkbox !== null) {
+        delete_checkbox.checked = true;
+    } else {
+      delete_input.remove(); // チェックボックスがない＝file_field外のフォームであるので、input要素自体を削除する
+    };
     // src入れ替え
+    let previewImage = document.getElementById("preview-img"+targetId);
     previewImage.setAttribute("src", "/assets/noimage-288e2c511c45ae528e62240a9f64d532cd0f0b859847ab5c3d72fe3a0a898ef6.png");
     // ボタン変更
     let imgAddBtn = document.getElementById("preview-btn"+targetId);
