@@ -32,7 +32,7 @@
                 = form.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
 
         = form.fields_for :menu_images, @menu.menu_images do |image|
-          = image.check_box :_destroy
+          = image.check_box :_destroy, style: "visibility:hidden"
           = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{image.index}", style: "display: none;", onchange: "addImg(event, #{image.index})", name: "menu[menu_images_attributes][#{image.index}][image]"
 
     .ui.stackable.three.column.grid.container
