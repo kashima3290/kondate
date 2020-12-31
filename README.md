@@ -11,13 +11,14 @@
 * Ruby on Rails (6.0.3)<br><br>
 * JavaScript<br><br>
 * jQuery<br><br>
+* jQuery<br><br>
 * MySQL (8.0.19)<br><br>
 * AWS (EC2)<br><br>
 
 ## 🔔 機能
 * ログイン
 * 料理登録
-* 画像複数登録
+* 画像複数登録・編集
 * 画像変更・削除プレビュー
 * 料理ランダム決定
 * ページネーション
