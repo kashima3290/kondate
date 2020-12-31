@@ -320,6 +320,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
+  net-ssh
   pry-byebug
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
