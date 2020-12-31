@@ -7,15 +7,32 @@
       - if @menu.errors.details[:menu_images].present?
         .ui.left.pointing.red.basic.label
           = "画像を少なくとも一枚追加してください"
-      = form.fields_for :menu_images do |image|
-        .doubling.four.column.row
-          - 4.times do |i|
+      .doubling.four.column.row
+        - @menu.menu_images.each.with_index do |menu_image,index|
+          .column
+            .ui.card
+              .image
+                = image_tag menu_image.image.url, class: "ui medium rounded image change-image", id: "preview-img#{index}", style: "height: 230px;"
+              .contents
+                .ui.bottom.attached.buttons{id: "preview-btn#{index}"}
+                  %label.ui.green.button{for: "preview-file#{index}"}
+                    = "変更"
+                  .or
+                  .ui.red.button{onclick: "deleteImg(event, #{index})"}
+                    = "削除"
+
+        - if @no_menu_count_array.present?
+          - @no_menu_count_array.each do |i|
             .column
               .ui.card
                 .image
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
-                  = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
-                  = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
+                  = form.label :menu_images, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
+                  = form.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
+
+        = form.fields_for :menu_images, @menu.menu_images do |image|
+          = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{image.index}", style: "display: none;", onchange: "addImg(event, #{image.index})", name: "menu[menu_images_attributes][#{image.index}][image]"
+
     .ui.stackable.three.column.grid.container
       .column
         .ui.form
@@ -41,7 +58,7 @@
           .field
             %label メモ
             = form.text_area :text, placeholder: "材料：〜"
-        = form.submit "作成", class: "fluid ui green button", style: "margin-top: 30px;"
+        = form.submit "更新", class: "fluid ui green button", style: "margin-top: 30px;"
 
 :javascript
   // 画像追加
