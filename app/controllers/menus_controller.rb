@@ -37,15 +37,6 @@ class MenusController < ApplicationController
 
   def update
     menu = Menu.find(params[:id])
-    # 複数枚画像のパラメータが空の場合は、配列から削除する
-    # puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-    # puts params[:menu][:menu_images_attributes]
-    # params[:menu][:menu_images_attributes].each do |key, value|
-    #   if value[:id].empty? # 値が空なら、画像配列から削除する
-    #     params[:menu][:menu_images_attributes].delete_at(key)
-    #   end
-    # end
-    # binding.pry
     if menu.update(menu_params)
       redirect_to root_path, notice: '編集完了しました'
     else
@@ -54,6 +45,12 @@ class MenusController < ApplicationController
   end
 
   def destroy
+    menu = Menu.find(params[:id])
+    if menu.destroy
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private

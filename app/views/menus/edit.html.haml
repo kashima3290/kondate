@@ -2,8 +2,12 @@
   = render "shared/header"
   = form_with model: @menu, local: true do |form|
     .ui.form.grid.container{style: "margin-top: 10px;"}
-      .required.inline.field
-        %label 写真
+      .two.column.row
+        .left.floated.column
+          .required.inline.field
+            %label 写真
+        .right.floated.column
+          = link_to "メニューを削除", menu_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "circular ui right floated red button"
       - if @menu.errors.details[:menu_images].present?
         .ui.left.pointing.red.basic.label
           = "画像を少なくとも一枚追加してください"
