@@ -15,6 +15,7 @@
                 .image
                   = image_tag 'noimage.png', class: "ui medium rounded image change-image", id: "preview-img#{i}", style: "height: 230px;"
                   = image.label :image, '画像を追加', class: 'ui bottom attached button', for: "preview-file#{i}", id: "preview-btn#{i}"
+                .image.file{id: "delete_input#{i}"}
                   = image.file_field :image, type: 'file', class: 'preview-file', id: "preview-file#{i}", style: "display: none;", onchange: "addImg(event, #{i})", name: "menu[menu_images_attributes][#{i}][image]"
     .ui.stackable.three.column.grid.container
       .column
@@ -76,8 +77,18 @@
   function deleteImg(event, targetId){
     let previewImage = document.getElementById("preview-img"+targetId);
     // input file の中身を削除
-    let file = document.getElementById("preview-file"+targetId);
-    file.value = "";
+    // let file = document.getElementById("preview-file"+targetId);
+    // file.value = "";
+
+    // inputを削除し、新たなinput要素を追加する
+    let delete_input = document.getElementById("delete_input" + targetId);
+    delete_input.innerHTML = '';
+    // delete_input.remove();
+    // 新たにinput要素追加
+    let nullInput = `
+                      <input type="file" class="preview-file" id="preview-file${targetId}" style="display: none;" onchange="addImg(event, ${targetId})" name="menu[menu_images_attributes][${targetId}][image]">
+                    `
+    delete_input.insertAdjacentHTML("beforeend", nullInput);
     // src入れ替え
     previewImage.setAttribute("src", "/assets/noimage-288e2c511c45ae528e62240a9f64d532cd0f0b859847ab5c3d72fe3a0a898ef6.png");
     // ボタン変更
