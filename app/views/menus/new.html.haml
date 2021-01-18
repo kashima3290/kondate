@@ -76,14 +76,9 @@
   // 画像削除
   function deleteImg(event, targetId){
     let previewImage = document.getElementById("preview-img"+targetId);
-    // input file の中身を削除
-    // let file = document.getElementById("preview-file"+targetId);
-    // file.value = "";
-
     // inputを削除し、新たなinput要素を追加する
     let delete_input = document.getElementById("delete_input" + targetId);
     delete_input.innerHTML = '';
-    // delete_input.remove();
     // 新たにinput要素追加
     let nullInput = `
                       <input type="file" class="preview-file" id="preview-file${targetId}" style="display: none;" onchange="addImg(event, ${targetId})" name="menu[menu_images_attributes][${targetId}][image]">

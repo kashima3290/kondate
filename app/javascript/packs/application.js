@@ -9,7 +9,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("semantic-ui-sass")
-// require ('packs/slick_slider.js')
+require ('packs/slick_slider.js')
 // require("packs/preview.js")
 // require("packs/preview_menus.js")
 
