@@ -9,7 +9,7 @@
       %i.dropdown.icon
       .menu
         = link_to "ユーザー情報編集", edit_user_path(current_user.id), class: "item"
-        = link_to "メールアドレス・パスワード変更", edit_user_registration_path, class: "item"
+        = link_to "メールアドレス・パスワード変更", edit_user_password_path, class: "item"
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item"
     = link_to "一覧", menus_path, class: "item"
     = link_to "決める", decide_menus_path,class: "item"
