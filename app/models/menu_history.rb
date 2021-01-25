@@ -1,0 +1,2 @@
+class MenuHistory < ApplicationRecord
+end
