@@ -1,2 +1,20 @@
-%h1 MenuHistories#index
-%p Find me in app/views/menu_histories/index.html.haml
+= render "shared/header"
+.field.ui.calendar.required
+  %lavel
+    = "日付"
+  .ui.input.left.icon
+    %i.calendar.icon
+    %input{type: "text", name: "date", placeholder: "日付"}
+
+:javascript
+  $('.ui.calendar').calendar({
+    type: 'date',
+    formatter: {
+      date: function (date) {
+        var day = ('0' + date.getDate()).slice(-2);
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var year = date.getFullYear();
+        return year + '/' + month + '/' + day;
+      }
+    }
+  });
