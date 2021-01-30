@@ -1,0 +1,2 @@
+module MenuHistoriesHelper
+end

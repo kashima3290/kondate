@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :menu_search
     end
   end
+  resources :menu_histories, only: [:index, :show, :create, :edit, :update, :delete]
   resources :decide_menus do
     collection do
       get :staple_food_menu

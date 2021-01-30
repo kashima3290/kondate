@@ -13,6 +13,7 @@
         = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "item"
     = link_to "一覧", menus_path, class: "item"
     = link_to "決める", decide_menus_path,class: "item"
+    = link_to "履歴", menu_histories_path,class: "item"
     .right.menu
       .item{style: "width: 35vw;"}
         = search_form_for @q, html: { class: "ui transparent icon input" }, url: menu_search_menus_path do |f|
