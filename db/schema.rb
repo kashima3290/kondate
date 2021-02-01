@@ -13,11 +13,13 @@
 ActiveRecord::Schema.define(version: 2021_01_25_112151) do
 
   create_table "menu_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "menu_id", null: false
     t.timestamp "eating_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_menu_histories_on_menu_id"
+    t.index ["user_id"], name: "index_menu_histories_on_user_id"
   end
 
   create_table "menu_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_112151) do
   end
 
   add_foreign_key "menu_histories", "menus"
+  add_foreign_key "menu_histories", "users"
   add_foreign_key "menu_images", "menus"
   add_foreign_key "menus", "users"
 end
