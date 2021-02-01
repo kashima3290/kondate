@@ -1,10 +1,12 @@
 = render "shared/header"
-.field.ui.calendar.required
-  %lavel
-    = "日付"
-  .ui.input.left.icon
-    %i.calendar.icon
-    %input{type: "text", name: "date", placeholder: "日付"}
+.ui.text.container.center.aligned.grid{style: "margin-top: 30px"}
+  %h2 日付指定検索
+  .field.ui.calendar.required
+    %lavel
+    .ui.input.left.icon
+      %i.calendar.icon
+      %input{type: "text", name: "date", placeholder: "日付"}
+
 
 :javascript
   $('.ui.calendar').calendar({
