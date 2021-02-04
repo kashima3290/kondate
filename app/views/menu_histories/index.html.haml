@@ -40,6 +40,13 @@
     -# .ui.dividing.header 2月3日
     -# .ui.dividing.header 2月4日
 
+-# ページネーション
+-# .ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
+-#   = paginate @menus
+-# = link_to new_menu_path do
+-#   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
+-#     %i.plus.icon
+
 :javascript
   $('.ui.calendar').calendar({
     type: 'date',
