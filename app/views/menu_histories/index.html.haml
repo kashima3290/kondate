@@ -9,8 +9,36 @@
 .ui.stackable.column.container.grid{style: "padding-top: 30px;"}
   .column
     .ui.dividing.header 2月2日
+.ui.four.stackable.cards{style: "margin: 10px 10px;"}
+  .orange.card
+  .orange.card
+  .orange.card
+  .orange.card
+.ui.stackable.column.container.grid{style: "padding-top: 30px;"}
+  .column
     .ui.dividing.header 2月3日
-    .ui.dividing.header 2月4日
+.ui.four.stackable.cards{style: "margin: 10px 10px;"}
+  .orange.card
+  .orange.card
+  .orange.card
+  .orange.card
+    -# = link_to menu_path(menu.id), {class: "ui image"} do
+    -#   = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
+    -# .content
+    -#   = link_to menu_path(menu.id), {class: "header"} do
+    -#     = menu.name
+    -#   .ui.red.ribbon.label
+    -#     = menu.genre
+    -#   -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
+    -#   -#   = menu.genre
+    -#   .meta
+    -#   .description{style: "font-size: 12px;"}
+    -#     - if menu.text.present?
+    -#       = link_to menu_path(menu.id), {class: "text"} do
+    -#         = truncate(menu.text, length: 150)
+
+    -# .ui.dividing.header 2月3日
+    -# .ui.dividing.header 2月4日
 
 :javascript
   $('.ui.calendar').calendar({
