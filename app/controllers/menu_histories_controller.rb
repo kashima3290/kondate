@@ -1,5 +1,6 @@
 class MenuHistoriesController < ApplicationController
   def index
+    @menu_histories = current_user.menu_histories
   end
 
   def show
