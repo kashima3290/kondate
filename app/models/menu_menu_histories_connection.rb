@@ -1,0 +1,2 @@
+class MenuMenuHistoriesConnection < ApplicationRecord
+end
