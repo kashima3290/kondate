@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 2021_02_08_032227) do
 
   create_table "menu_menu_histories_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "menu_id", null: false
-    t.bigint "menu_histories_id", null: false
+    t.bigint "menu_history_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["menu_histories_id"], name: "index_menu_menu_histories_connections_on_menu_histories_id"
+    t.index ["menu_history_id"], name: "index_menu_menu_histories_connections_on_menu_history_id"
     t.index ["menu_id"], name: "index_menu_menu_histories_connections_on_menu_id"
   end
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_032227) do
 
   add_foreign_key "menu_histories", "users"
   add_foreign_key "menu_images", "menus"
-  add_foreign_key "menu_menu_histories_connections", "menu_histories", column: "menu_histories_id"
+  add_foreign_key "menu_menu_histories_connections", "menu_histories"
   add_foreign_key "menu_menu_histories_connections", "menus"
   add_foreign_key "menus", "users"
 end
