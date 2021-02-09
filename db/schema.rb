@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_112151) do
+ActiveRecord::Schema.define(version: 2021_02_08_032227) do
 
   create_table "menu_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "menu_id", null: false
     t.timestamp "eating_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["menu_id"], name: "index_menu_histories_on_menu_id"
     t.index ["user_id"], name: "index_menu_histories_on_user_id"
   end
 
@@ -28,6 +26,15 @@ ActiveRecord::Schema.define(version: 2021_01_25_112151) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_menu_images_on_menu_id"
+  end
+
+  create_table "menu_menu_histories_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "menu_id"
+    t.bigint "menu_histories_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_histories_id"], name: "index_menu_menu_histories_connections_on_menu_histories_id"
+    t.index ["menu_id"], name: "index_menu_menu_histories_connections_on_menu_id"
   end
 
   create_table "menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -56,7 +63,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_112151) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "menu_histories", "menus"
   add_foreign_key "menu_histories", "users"
   add_foreign_key "menu_images", "menus"
   add_foreign_key "menus", "users"
