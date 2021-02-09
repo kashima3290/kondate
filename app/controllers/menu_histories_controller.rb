@@ -1,6 +1,6 @@
 class MenuHistoriesController < ApplicationController
   def index
-    @menu_histories = current_user.menu_histories
+    @menu_histories = current_user.menu_histories.order(eating_date: "DESC")
   end
 
   def show
