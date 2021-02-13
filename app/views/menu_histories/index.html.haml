@@ -6,46 +6,32 @@
     .ui.input.left.icon
       %i.calendar.icon
       %input{type: "text", name: "date", placeholder: "日付"}
-.ui.stackable.column.container.grid{style: "padding-top: 30px;"}
-  .column
-    .ui.dividing.header 2月2日
-.ui.four.stackable.cards{style: "margin: 10px 10px;"}
-  .orange.card
-  .orange.card
-  .orange.card
-  .orange.card
-.ui.stackable.column.container.grid{style: "padding-top: 30px;"}
-  .column
-    .ui.dividing.header 2月3日
-.ui.four.stackable.cards{style: "margin: 10px 10px;"}
-  .orange.card
-  .orange.card
-  .orange.card
-  .orange.card
-    -# = link_to menu_path(menu.id), {class: "ui image"} do
-    -#   = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
-    -# .content
-    -#   = link_to menu_path(menu.id), {class: "header"} do
-    -#     = menu.name
-    -#   .ui.red.ribbon.label
-    -#     = menu.genre
-    -#   -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
-    -#   -#   = menu.genre
-    -#   .meta
-    -#   .description{style: "font-size: 12px;"}
-    -#     - if menu.text.present?
-    -#       = link_to menu_path(menu.id), {class: "text"} do
-    -#         = truncate(menu.text, length: 150)
-
-    -# .ui.dividing.header 2月3日
-    -# .ui.dividing.header 2月4日
+- @menu_histories.each do |menu_history|
+  .ui.stackable.column.container.grid{style: "padding-top: 30px;"}
+    .column
+      .ui.dividing.header
+        = menu_history.eating_date.strftime("%Y年 %m月 %d日")
+  .ui.four.stackable.cards{style: "margin: 10px 10px;"}
+    - menu_history.menu.each do |menu|
+      .orange.card
+        = link_to menu_path(menu.id), {class: "ui image"} do
+          = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
+        .content
+          = link_to menu_path(menu.id), {class: "header"} do
+            = menu.name
+          .ui.red.ribbon.label
+            = menu.genre
+          -# .ui.blue.tag.label -#ラベルを複数実施する時に使用
+          -#   = menu.genre
+          .meta
+          .description{style: "font-size: 12px;"}
+            - if menu.text.present?
+              = link_to menu_path(menu.id), {class: "text"} do
+                = truncate(menu.text, length: 150)
 
 -# ページネーション
--# .ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
--#   = paginate @menus
--# = link_to new_menu_path do
--#   %button.circular.ui.icon.massive.red.button{style: "position: fixed; right: 5%; bottom: 5%;"}
--#     %i.plus.icon
+.ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
+  = paginate @menus
 
 :javascript
   $('.ui.calendar').calendar({
