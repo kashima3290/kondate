@@ -7,6 +7,12 @@ class MenuHistoriesController < ApplicationController
   end
 
   def create
+    @menu_history = MenuHistory.new(menu_history_params)
+    if @menu_history.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -16,6 +22,12 @@ class MenuHistoriesController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+
+  def menu_history_params
+    params.require(:menu_history).permit(:menu_id).merge(user_id: current_user.id, eating_date: Time.new)
   end
 
 end
