@@ -11,20 +11,22 @@ class DecideMenusController < ApplicationController
     @eating_out_menu_id = current_user.menus.where(genre: '外食').order("RAND()").first
   end
 
-  def random_menu
+  def random_menu(jenre)
     @random_menu = current_user.menus.find(params[:id])
-    judge_extence_junre_menus("", @random_menu)
+    if judge_extence_junre_menus(jenre, @random_menu) == false
+      redirect_to decide_menus_path
+    end
   end
 
   def judge_extence_junre_menus(jenre, random_menu)
     if random_menu.blank? && jenre != ""
       flash[:alert] = "#{jenre}は登録されていません"
       return false
-      # redirect_to decide_menus_path
-    elsif random_menu.blank? && jenre = ""
+    elsif random_menu.blank? && jenre == ""
       flash[:alert] = "ジャンルがあるメニューを登録してください"
       return false
-      # redirect_to decide_menus_path
+    else
+      return true
     end
   end
 
