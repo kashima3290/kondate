@@ -12,7 +12,7 @@ class DecideMenusController < ApplicationController
   end
 
   def random_menu
-    @random_menu = current_user.menus.order("RAND()").first
+    @random_menu = current_user.menus.find(params[:id])
     judge_extence_junre_menus("", @random_menu)
   end
 
