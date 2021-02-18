@@ -17,13 +17,14 @@ class DecideMenusController < ApplicationController
   end
 
   def judge_extence_junre_menus(jenre, random_menu)
-    puts random_menu
     if random_menu.blank? && jenre != ""
       flash[:alert] = "#{jenre}は登録されていません"
-      redirect_to decide_menus_path
+      return false
+      # redirect_to decide_menus_path
     elsif random_menu.blank? && jenre = ""
       flash[:alert] = "ジャンルがあるメニューを登録してください"
-      redirect_to decide_menus_path
+      return false
+      # redirect_to decide_menus_path
     end
   end
 
