@@ -13,7 +13,7 @@ class DecideMenusController < ApplicationController
 
   def random_menu(jenre = "")
     @random_menu = current_user.menus.find(params[:id])
-    if judge_extence_junre_menus(jenre, @random_menu)
+    if judge_extence_junre_menus(jenre, @random_menu) == false
       redirect_to decide_menus_path
     end
   end
