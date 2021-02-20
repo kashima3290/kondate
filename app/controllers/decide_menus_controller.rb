@@ -11,9 +11,9 @@ class DecideMenusController < ApplicationController
     @eating_out_menu_id = current_user.menus.where(genre: '外食').order("RAND()").first
   end
 
-  def random_menu(jenre)
+  def random_menu(jenre = "")
     @random_menu = current_user.menus.find(params[:id])
-    if judge_extence_junre_menus(jenre, @random_menu) == false
+    if judge_extence_junre_menus(jenre, @random_menu)
       redirect_to decide_menus_path
     end
   end
