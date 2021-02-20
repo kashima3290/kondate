@@ -4,7 +4,7 @@
     %h3.ui.red.message{style: "margin-top: 30px; color: red;"}= flash[:alert]
   - else
     %h3{style: "margin-top: 30px"} どのジャンルから選ぶ？
-  = link_to "ランダム", random_menu_decide_menus_path, class: "fluid ui gray big button"
+  = link_to "ランダム", random_menu_decide_menus_path(@random_menu_id), class: "fluid ui gray big button"
   = link_to "主食", random_menu_decide_menus_path(@staple_food_menu_id), class: "fluid ui yellow big button", style: "margin-top: 40px"
   = link_to "主菜", random_menu_decide_menus_path(@main_dish_menu_id), class: "fluid ui red big button", style: "margin-top: 40px"
   = link_to "野菜", random_menu_decide_menus_path(@vegetable_menu_id), class: "fluid ui green big button", style: "margin-top: 40px"
