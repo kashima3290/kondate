@@ -1,14 +1,11 @@
 = render "shared/header"
 .ui.text.container.center.aligned.grid
-  - if flash[:alert]
+  - if flash[:alert] # ジャンルがないときはエラー
     %h3.ui.red.message{style: "margin-top: 30px; color: red;"}= flash[:alert]
   - else
     %h3{style: "margin-top: 30px"} どのジャンルから選ぶ？
-  = link_to "ランダム", random_menu_decide_menu_path(@random_menu_id), class: "fluid ui gray big button"
-  -# = link_to "主食", random_menu_decide_menu_path(@staple_food_menu_id), class: "fluid ui yellow big button", style: "margin-top: 40px"
-  -# = link_to "主菜", random_menu_decide_menu_path(@main_dish_menu_id), class: "fluid ui red big button", style: "margin-top: 40px"
-  -# = link_to "野菜", random_menu_decide_menu_path(@vegetable_menu_id), class: "fluid ui green big button", style: "margin-top: 40px"
-  -# = link_to "一品もの", random_menu_decide_menu_path(@one_item_menu_id), class: "fluid ui orange big button", style: "margin-top: 40px"
-  -# = link_to "デザート", random_menu_decide_menu_path(@dessert_menu_id), class: "fluid ui pink big button", style: "margin-top: 40px"
-  -# = link_to "その他", random_menu_decide_menu_path(@other_menu_id), class: "fluid ui purple big button", style: "margin-top: 40px"
-  -# = link_to "外食", random_menu_decide_menu_path(@eating_out_menu_id), class: "fluid ui brown big button", style: "margin-top: 40px; margin-bottom: 40px;"
+  - @decide_menus.each_with_index do |menu, i|
+    - if i == 0 && menu.present? # 1回目の処理は全てのランダムのメニューを取得するため除外
+      = link_to "ランダム", random_menu_decide_menu_path(menu.id), class: "fluid ui gray big button"
+    - elsif menu.present? # ジャンルがあればボタン表示
+      = link_to menu.genre, random_menu_decide_menu_path(menu.id), class: "fluid ui gray big button", style: "margin-top: 40px"
