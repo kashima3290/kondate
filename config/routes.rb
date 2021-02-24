@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :decide_menus do
     member do
       get :random_menu
+      get :random_genre_menu
     end
   end
 end
