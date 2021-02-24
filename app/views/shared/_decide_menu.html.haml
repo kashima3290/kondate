@@ -25,7 +25,7 @@
         %p= @random_menu.text
   .ui.text.container.center.aligned.grid{style: "margin-top: 40px;"}
     = link_to "今日はこれにする！", menu_histories_path, class: "fluid ui red big button", style: "margin-bottom: 40px;", method: "POST"
-    = link_to "この気分じゃない", random_menu_decide_menus_path, class: "fluid ui orange big button", style: "margin-bottom: 40px;"
+    = link_to "この気分じゃない", random_menu_decide_menu_path(@next_random_menu.id), class: "fluid ui orange big button", style: "margin-bottom: 40px;"
 
 :css
   .slider img {
