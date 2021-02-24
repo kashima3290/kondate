@@ -14,11 +14,17 @@ class DecideMenusController < ApplicationController
 
   def random_menu
     @random_menu = current_user.menus.find(params[:id])
-    # if genre == ""
-    #   @next_random_menu = current_user.menus.order("RAND()").first
-    # else
-    #   @next_random_menu = current_user.menus.where(genre: genre).order("RAND()").first
+    genre = ""
+    @next_random_menu = current_user.menus.order("RAND()").first
+    if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
+      redirect_to decide_menus_path
     end
+  end
+
+  def random_genre_menu
+    @random_menu = current_user.menus.find(params[:id])
+    genre = @random_menu.genre
+    @next_random_menu = current_user.menus.where(genre: genre).order("RAND()").first
     if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
       redirect_to decide_menus_path
     end
