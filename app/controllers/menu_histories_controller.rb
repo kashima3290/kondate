@@ -27,7 +27,7 @@ class MenuHistoriesController < ApplicationController
   private
 
   def menu_history_params
-    params.require(:menu_history).permit(:menu_id).merge(user_id: current_user.id, eating_date: Time.new)
+    params.require(:menu_history).permit(menu_ids: []).merge(user_id: current_user.id, eating_date: Time.new)
   end
 
 end
