@@ -13,6 +13,7 @@ class DecideMenusController < ApplicationController
   end
 
   def random_menu
+    @menu_history = MenuHistory.new
     @random_menu = current_user.menus.find(params[:id])
     genre = ""
     @next_random_menu = current_user.menus.order("RAND()").first
@@ -22,6 +23,7 @@ class DecideMenusController < ApplicationController
   end
 
   def random_genre_menu
+    @menu_history = MenuHistory.new
     @random_menu = current_user.menus.find(params[:id])
     genre = @random_menu.genre
     @next_random_menu = current_user.menus.where(genre: genre).order("RAND()").first
