@@ -26,6 +26,10 @@
   .ui.text.container.center.aligned.grid{style: "margin-top: 40px;"}
     = link_to "今日はこれにする！", menu_histories_path, class: "fluid ui red big button", style: "margin-bottom: 40px;", method: "POST"
     = link_to "この気分じゃない", random_genre_menu_decide_menu_path(@next_random_menu.id), class: "fluid ui orange big button", style: "margin-bottom: 40px;"
+    = form_with model: @menu_history, local: true do |f|
+      -# 中間テーブルに保存
+      %input{type: 'hidden', name: 'menu_history[menu_ids][]', value: @random_menu.id}
+      = f.submit "今日はこれにする！", class: "fluid ui red big button", style: "margin-bottom: 40px;", method: "POST"
 
 :css
   .slider img {
