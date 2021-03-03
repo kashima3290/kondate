@@ -17,6 +17,15 @@ class DecideMenusController < ApplicationController
     @random_menu = current_user.menus.find(params[:id])
     genre = ""
     @next_random_menu = current_user.menus.order("RAND()").first
+    # 日付が今日の履歴データが存在する場合、updateするためのformを作成するためにview側でhiddenを表示
+    today_menu_history_array = MenuHistory.where("eating_date >= ?",  Date.today)
+    if (today_menu_history_array)
+      today_menu_history = today_menu_history_array[0]
+      @menu_ids = []
+      today_menu_history.menu_menu_histories_connections.each do |connection|
+        @menu_ids << connection.menu_id
+      end
+    end
     if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
       redirect_to decide_menus_path
     end
@@ -27,6 +36,15 @@ class DecideMenusController < ApplicationController
     @random_menu = current_user.menus.find(params[:id])
     genre = @random_menu.genre
     @next_random_menu = current_user.menus.where(genre: genre).order("RAND()").first
+    # 日付が今日の履歴データが存在する場合、updateするためのformを作成するためにview側でhiddenを表示
+    today_menu_history_array = MenuHistory.where("eating_date >= ?",  Date.today)
+    if (today_menu_history_array)
+      today_menu_history = today_menu_history_array[0]
+      @menu_ids = []
+      today_menu_history.menu_menu_histories_connections.each do |connection|
+        @menu_ids << connection.menu_id
+      end
+    end
     if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
       redirect_to decide_menus_path
     end
