@@ -26,6 +26,10 @@
   = form_with model: @menu_history, class: "ui text container center aligned grid", style: "width: 100%;", local: true do |f|
     -# 中間テーブルに保存
     %input{type: 'hidden', name: 'menu_history[menu_ids][]', value: @random_menu.id}
+    -# 今日に作成したメニュー履歴が作成されている場合、中間テーブルのみをupdateするためのmenu_idをinput要素で表示
+    - if @menu_ids.present?
+      - @menu_ids.each do |menu_id|
+        %input{type: 'hidden', name: 'menu_history[menu_ids][]', value: menu_id}
     = f.submit "今日はこれにする！", class: "fluid ui green big button", style: "margin-bottom: 40px;", method: "POST"
   .ui.text.container.center.aligned.grid
     = link_to "この気分じゃない", random_genre_menu_decide_menu_path(@next_random_menu.id), class: "fluid ui big button", style: "margin-bottom: 40px;"
