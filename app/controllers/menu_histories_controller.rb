@@ -2,7 +2,6 @@ class MenuHistoriesController < ApplicationController
   def index
     @menu_histories = current_user.menu_histories.order(eating_date: "DESC").page(params[:page]).per(5)
     today_menu_history = MenuHistory.where("eating_date >= ?",  Date.today)
-    puts today_menu_history[0].eating_date
   end
 
   def show
