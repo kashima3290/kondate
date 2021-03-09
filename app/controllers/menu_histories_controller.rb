@@ -8,9 +8,9 @@ class MenuHistoriesController < ApplicationController
   end
 
   def create
-    today_menu_history_array = MenuHistory.where("eating_date >= ?",  Date.today) # 今日の日付開始より大きい日付（今日登録したデータ）
+    today_menu_history_array = MenuHistory.where("eating_date >= ?", Date.today) # 今日の日付開始より大きい日付（今日登録したデータ）
     # 今日の日付分のデータが既にある場合、今日の日付に紐づくメニューを更新
-    if (today_menu_history_array)
+    if today_menu_history_array.present?
       today_menu_history = today_menu_history_array[0]
       if today_menu_history.update(menu_history_params)
         redirect_to root_path
