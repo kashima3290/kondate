@@ -13,40 +13,40 @@ class DecideMenusController < ApplicationController
   end
 
   def random_menu
-    @menu_history = MenuHistory.new
     @random_menu = current_user.menus.find(params[:id])
     genre = ""
+    if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
+      redirect_to decide_menus_path # エラーを出し、画面遷移しない
+    end
+    @menu_history = MenuHistory.new
     @next_random_menu = current_user.menus.order("RAND()").first
     # 日付が今日の履歴データが存在する場合、updateするためのformを作成するためにview側でhiddenを表示
-    today_menu_history_array = MenuHistory.where("eating_date >= ?",  Date.today)
-    if (today_menu_history_array)
+    today_menu_history_array = MenuHistory.where("eating_date >= ?", Date.today)
+    if today_menu_history_array.present?
       today_menu_history = today_menu_history_array[0]
       @menu_ids = []
       today_menu_history.menu_menu_histories_connections.each do |connection|
         @menu_ids << connection.menu_id
       end
-    end
-    if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
-      redirect_to decide_menus_path
     end
   end
 
   def random_genre_menu
-    @menu_history = MenuHistory.new
     @random_menu = current_user.menus.find(params[:id])
     genre = @random_menu.genre
+    if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
+      redirect_to decide_menus_path # エラーを出し、画面遷移しない
+    end
+    @menu_history = MenuHistory.new
     @next_random_menu = current_user.menus.where(genre: genre).order("RAND()").first
     # 日付が今日の履歴データが存在する場合、updateするためのformを作成するためにview側でhiddenを表示
-    today_menu_history_array = MenuHistory.where("eating_date >= ?",  Date.today)
-    if (today_menu_history_array)
+    today_menu_history_array = MenuHistory.where("eating_date >= ?", Date.today)
+    if today_menu_history_array.present?
       today_menu_history = today_menu_history_array[0]
       @menu_ids = []
       today_menu_history.menu_menu_histories_connections.each do |connection|
         @menu_ids << connection.menu_id
       end
-    end
-    if judge_extence_junre_menus(genre, @random_menu) == false # ジャンルのメニューが無い場合
-      redirect_to decide_menus_path
     end
   end
 

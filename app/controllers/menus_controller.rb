@@ -23,11 +23,21 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
+    @menu_history = MenuHistory.new
+    today_menu_history_array = MenuHistory.where("eating_date >= ?", Date.today)
+    # 日付が今日の履歴データが存在する場合、menu＿historyをupdateするためのformを作成するためにview側でhiddenを表示
+    if today_menu_history_array.present?
+      today_menu_history = today_menu_history_array[0]
+      @menu_ids = []
+      today_menu_history.menu_menu_histories_connections.each do |connection|
+        @menu_ids << connection.menu_id
+      end
+    end
   end
 
   def edit
     @menu = Menu.find(params[:id])
-    # 配列の数が4未満なら空の配列を入れて要素を４個に保管するする
+    # 配列の数が4未満なら空の配列を入れて要素を４個に保管する
     @no_menu_count_array = [] # 画像がない枚数を配列に格納
     @noimage_form_count = 4 - @menu.menu_images.count
     @noimage_form_count.times do |i|

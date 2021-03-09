@@ -28,6 +28,14 @@
         - if @menu.text.present?
           .ui.dividing.header メモ
           %p= @menu.text
+  = form_with model: @menu_history, class: "ui text container center aligned grid", style: "width: 100%;", local: true do |f|
+    -# 中間テーブルに保存
+    %input{type: 'hidden', name: 'menu_history[menu_ids][]', value: @menu.id}
+    -# 今日に作成したメニュー履歴が作成されている場合、中間テーブルのみをupdateするためのmenu_idをinput要素で表示
+    - if @menu_ids.present?
+      - @menu_ids.each do |menu_id|
+        %input{type: 'hidden', name: 'menu_history[menu_ids][]', value: menu_id}
+    = f.submit "今からこれを食べる！", class: "fluid ui green big button", style: "margin-bottom: 40px;"
 
 :css
   .slider img {
