@@ -28,18 +28,18 @@ class MenuHistoriesController < ApplicationController
   def update
     menu_history = MenuHistory.find(params[:id])
     # 全部削除されていた場合は履歴自体を削除
-    if params[:menu_ids].blank?
+    if params[:menu_history].nil?
       # Menuhistoryを削除
       if menu_history.destroy
-        redirect_to menu_histories_path
+        redirect_to menu_histories_url
       else
-        render menu_histories_path
+        render menu_histories_url
       end
     else
       if menu_history.update(menu_history_params)
-        redirect_to menu_histories_url, alert: 'エラーが発生しました'
+        redirect_to menu_histories_url
       else
-        render menu_histories_path
+        render menu_histories_url, alert: 'エラーが発生しました'
       end
     end
   end
