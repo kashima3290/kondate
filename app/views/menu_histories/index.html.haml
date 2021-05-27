@@ -8,7 +8,7 @@
       %input{type: "text", name: "date", placeholder: "日付"}
 - @menu_histories.each do |menu_history|
   = form_with model: menu_history, local: true do |form|
-    %div{class: "ui", id: menu_history.id, style: "margin: 30px 10px"}
+    %div{class: "ui", id: "menu-history-#{menu_history.id}", style: "margin: 30px 10px"}
       .ui.stackable.column.container.grid{style: "padding-top: 30px;"}
         .column
           .ui.dividing.header.menu-history-edit{ data: { content: "編集する"} }
@@ -17,7 +17,7 @@
       .ui.menu-history
         .ui.four.stackable.cards{style: "margin: 10px 10px;"}
           - menu_history.menu.each do |menu|
-            %div{class: "orange card", id: menu.id}
+            %div{class: "orange card", id: "menu-#{menu.id}"}
               = link_to menu_path(menu.id), {class: "ui image"} do
                 = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
               .content
@@ -72,7 +72,7 @@
 
     // セグメント内にメニュー履歴をいれる
     let menu_history_id = event.target.dataset.historyid;
-    let target_history = document.getElementById(menu_history_id);
+    let target_history = document.getElementById('menu-history-' + menu_history_id);
     target_history.classList.add('segment');
 
     // 削除ボタン追加
@@ -100,6 +100,6 @@
 
   // 履歴からメニュー削除
   function menuDestroy(event, menu_id){
-    let target_menu = document.getElementById(menu_id);
+    let target_menu = document.getElementById('menu-' + menu_id);
     target_menu.remove();
   }
