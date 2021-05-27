@@ -1,4 +1,7 @@
 = render "shared/header"
+.ui.text.container.center.aligned.grid
+  - if flash[:alert] # ジャンルがないときはエラー
+    %h3.ui.red.message{style: "margin-top: 30px; color: red;"}= flash[:alert]
 .ui.text.container.center.aligned.grid{style: "margin-top: 30px"}
   %h2 日付指定検索
   .field.ui.calendar.required
@@ -17,7 +20,7 @@
       .ui.menu-history
         .ui.four.stackable.cards{style: "margin: 10px 10px;"}
           - menu_history.menu.each do |menu|
-            %div{class: "orange card", id: "menu-#{menu.id}"}
+            %div{class: "orange card", id: "menu-#{menu_history.id}-#{menu.id}"}
               = link_to menu_path(menu.id), {class: "ui image"} do
                 = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
               .content
@@ -82,7 +85,7 @@
     for (let i = 0; i < checkbox_targets_array.length; ++i) {
       let checkbox_target = checkbox_targets_array[i];
       let menu_id = checkbox_target.id;
-      let checkbox =`<div class="ui bottom attached red button delete-button" style="width: 100%;" onclick="menuDestroy(event, ${menu_id})"> 削除 </div>
+      let checkbox =`<div class="ui bottom attached red button delete-button" style="width: 100%;" onclick="menuDestroy(event, '${menu_id}')"> 削除 </div>
                     `
       checkbox_target.insertAdjacentHTML("beforeend", checkbox);
     }
@@ -100,6 +103,7 @@
 
   // 履歴からメニュー削除
   function menuDestroy(event, menu_id){
-    let target_menu = document.getElementById('menu-' + menu_id);
-    target_menu.remove();
+    let target_destroy_menu = document.getElementById(menu_id);
+    console.log(target_destroy_menu);
+    target_destroy_menu.remove();
   }
