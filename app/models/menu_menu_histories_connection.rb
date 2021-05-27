@@ -1,4 +1,4 @@
 class MenuMenuHistoriesConnection < ApplicationRecord
-  belongs_to :menu
-  belongs_to :menu_history
+  belongs_to :menu, optional: true
+  belongs_to :menu_history, optional: true
 end

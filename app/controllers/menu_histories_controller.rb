@@ -4,9 +4,6 @@ class MenuHistoriesController < ApplicationController
     today_menu_history = MenuHistory.where("eating_date >= ?",  Date.today)
   end
 
-  def show
-  end
-
   def create
     today_menu_history_array = MenuHistory.where("eating_date >= ?", Date.today) # 今日の日付開始より大きい日付（今日登録したデータ）
     # 今日の日付分のデータが既にある場合、今日の日付に紐づくメニューを更新
@@ -28,13 +25,23 @@ class MenuHistoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
-  end
-
-  def delete
+    menu_history = MenuHistory.find(params[:id])
+    # 全部削除されていた場合は履歴自体を削除
+    if params[:menu_ids].blank?
+      # Menuhistoryを削除
+      if menu_history.destroy
+        redirect_to menu_histories_path
+      else
+        render menu_histories_path
+      end
+    else
+      if menu_history.update(menu_history_params)
+        redirect_to menu_histories_url, alert: 'エラーが発生しました'
+      else
+        render menu_histories_path
+      end
+    end
   end
 
   private
