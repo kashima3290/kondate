@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get :menu_search
     end
   end
-  resources :menu_histories, only: [:index, :show, :create, :edit, :update, :delete]
+  resources :menu_histories, only: [:index, :show, :create, :update]
   resources :decide_menus do
     member do
       get :random_menu
