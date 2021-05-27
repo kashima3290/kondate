@@ -65,6 +65,9 @@
         let target_dlete_btn = dlete_btns_array[i];
         target_dlete_btn.remove();
       }
+      // 更新ボタンの削除
+      let update_btn = document.getElementById('update-btn');
+      update_btn.remove();
     }
 
     // セグメント内にメニュー履歴をいれる
@@ -84,15 +87,15 @@
       checkbox_target.insertAdjacentHTML("beforeend", checkbox);
     }
 
-    // 削除ボタン追加
-    let destroy_button = `
-    <div class="ui center aligned grid">
+    // 更新ボタン追加
+    let update_btn = `
+    <div class="ui center aligned grid" id="update-btn">
       <div class="eight wide column">
-        <input type="submit" name="commit" class="ui green button">
+        <input type="submit" name="commit" class="ui green button" value="更新">
       </div>
     </div>
     `
-    target_history.insertAdjacentHTML("beforeend", destroy_button);
+    target_history.insertAdjacentHTML("beforeend", update_btn);
   }
 
   // 履歴からメニュー削除
