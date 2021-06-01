@@ -1,0 +1,110 @@
+= render "shared/header"
+.ui.text.container.center.aligned.grid
+  - if flash[:alert] # ジャンルがないときはエラー
+    %h3.ui.red.message{style: "margin-top: 30px; color: red;"}= flash[:alert]
+.ui.text.container.center.aligned.grid{style: "margin-top: 30px"}
+  %h2 日付指定検索
+  .field.ui.calendar.required
+    = search_form_for @menu_history_q, html: { class: "ui input left icon" }, url: menu_history_search_menu_histories_path do |f|
+      %i.calendar.icon
+      = f.text_field :eating_date_lteq, placeholder: "日付"
+      = button_tag type: 'submit', class: "circular ui icon button", style: "margin-left: 20px;" do
+        %i.search.link.icon
+- @menu_histories.each do |menu_history|
+  = form_with model: menu_history, local: true do |form|
+    %div{class: "ui", id: "menu-history-#{menu_history.id}", style: "margin: 30px 10px"}
+      .ui.stackable.column.container.grid{style: "padding-top: 30px;"}
+        .column
+          .ui.dividing.header.menu-history-edit{ data: { content: "編集する"} }
+            %a{style: "cursor: pointer;", onclick: "editMenuHistory(event)", data: { historyid: menu_history.id} }
+              = menu_history.eating_date.strftime("%Y年 %m月 %d日")
+      .ui.menu-history
+        .ui.four.stackable.cards{style: "margin: 10px 10px;"}
+          - menu_history.menu.each do |menu|
+            %div{class: "orange card", id: "menu-#{menu_history.id}-#{menu.id}"}
+              = link_to menu_path(menu.id), {class: "ui image"} do
+                = image_tag menu.menu_images[0].image.url, class: "ui medium image change-image", style: "height: 230px;"
+              .content
+                = link_to menu_path(menu.id), {class: "header"} do
+                  = menu.name
+                .ui.red.ribbon.label
+                  = menu.genre
+                .meta
+                .description{style: "font-size: 12px;"}
+                  - if menu.text.present?
+                    = link_to menu_path(menu.id), {class: "text"} do
+                      = truncate(menu.text, length: 150)
+              %input{name: "menu_history[menu_ids][]", type: "hidden", value: menu.id}
+
+-# ページネーション
+.ui.column.centered.grid{style: "margin-top: 20px; padding-bottom: 40px;"}
+  = paginate @menus
+
+:javascript
+  // カレンダーの表示
+  $('.ui.calendar').calendar({
+    type: 'date',
+    formatter: {
+      date: function (date) {
+        var day = ('0' + date.getDate()).slice(-2);
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var year = date.getFullYear();
+        return year + '-' + month + '-' + day;
+      }
+    }
+  });
+
+  // メニュー履歴編集
+  function editMenuHistory(event){
+    // 他のメニュー履歴を編集している場合はセグメント・削除ボタン・更新ボタンの削除
+    if(document.querySelector('.segment')) {
+      // id: segment のみ削除
+      let elm = document.querySelector('.segment')
+      elm.classList.remove("placeholder");
+      elm.classList.remove("segment");
+      // 削除ボタンの削除
+      let dlete_btns = elm.getElementsByClassName('delete-button');
+      let dlete_btns_array = Array.from(dlete_btns);
+      for (let i = 0; i < dlete_btns_array.length; ++i) {
+        let target_dlete_btn = dlete_btns_array[i];
+        target_dlete_btn.remove();
+      }
+      // 更新ボタンの削除
+      let update_btn = document.getElementById('update-btn');
+      update_btn.remove();
+    }
+
+    // セグメント内にメニュー履歴をいれる
+    let menu_history_id = event.target.dataset.historyid;
+    let target_history = document.getElementById('menu-history-' + menu_history_id);
+    target_history.classList.add('segment');
+
+    // 削除ボタン追加
+    let checkbox_targets = target_history.getElementsByClassName('card');
+    checkbox_targets_array = Array.from(checkbox_targets);
+
+    for (let i = 0; i < checkbox_targets_array.length; ++i) {
+      let checkbox_target = checkbox_targets_array[i];
+      let menu_id = checkbox_target.id;
+      let checkbox =`<div class="ui bottom attached red button delete-button" style="width: 100%;" onclick="menuDestroy(event, '${menu_id}')"> 削除 </div>
+                    `
+      checkbox_target.insertAdjacentHTML("beforeend", checkbox);
+    }
+
+    // 更新ボタン追加
+    let update_btn = `
+    <div class="ui center aligned grid" id="update-btn">
+      <div class="eight wide column">
+        <input type="submit" name="commit" class="ui green button" value="更新">
+      </div>
+    </div>
+    `
+    target_history.insertAdjacentHTML("beforeend", update_btn);
+  }
+
+  // 履歴からメニュー削除
+  function menuDestroy(event, menu_id){
+    let target_destroy_menu = document.getElementById(menu_id);
+    console.log(target_destroy_menu);
+    target_destroy_menu.remove();
+  }
