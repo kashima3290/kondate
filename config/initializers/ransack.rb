@@ -1,6 +1,5 @@
-Ransack.configure do |c|
-   c.add_predicate 'lteq_end_of_day',
-                   arel_predicate: 'lteq',
-                   formatter: proc {|v| v.end_of_day},
-                   compounds: false
- end
+Ransack.configure do |config|
+  config.add_predicate 'lteq_end_of_day', #設定するpredicateに名前をつける
+  arel_predicate: 'lteq', #使いたいpredicate
+  formatter: proc { |v| v.end_of_day } # 受け取った値をどうフォーマットするか
+end
