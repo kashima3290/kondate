@@ -1,5 +1,5 @@
 class MenuHistoriesController < ApplicationController
-  before_action :menu_history_search, only: [:index]
+  before_action :menu_history_search
 
   def index
     @menu_histories = current_user.menu_histories.order(eating_date: "DESC").page(params[:page]).per(5)
@@ -48,8 +48,8 @@ class MenuHistoriesController < ApplicationController
 
   # メニュー履歴検索機能（検索した日以降を表示）
   def menu_history_search
-    @menu_history_q = MenuHistory.ransack(params[:menu_history_q]) # 検索オブジェクトを生成
-    @menu_histories = @menu_history_q.result.order(created_at: :desc).page(params[:page]).per(5)
+    @menu_history_q = current_user.menu_histories.ransack(params[:q]) # 検索オブジェクトを生成
+    @menu_histories = @menu_history_q.result.order(eating_date: :DESC).page(params[:page]).per(5)
   end
 
   private
