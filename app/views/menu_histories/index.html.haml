@@ -7,6 +7,8 @@
   .field.ui.calendar.required
     = search_form_for @menu_history_q, html: { class: "ui input" }, url: menu_history_search_menu_histories_path do |f|
       = f.date_field :eating_date_gteq, include_blank: true,class: 'form-control'
+      %i{style: "margin: 10px 10px 0"}
+        = "〜"
       = f.date_field :eating_date_lteq_end_of_day, include_blank: true, class: 'form-control'
       = button_tag type: 'submit', class: "circular ui icon button", style: "margin-left: 20px;" do
         %i.search.link.icon
