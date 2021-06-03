@@ -1,5 +1,5 @@
 class MenuHistoriesController < ApplicationController
-  before_action :menu_history_search
+  before_action :menu_history_search, only: %i[:index, :menu_history_search]
 
   def index
     @menu_histories = current_user.menu_histories.order(eating_date: "DESC").page(params[:page]).per(5)
