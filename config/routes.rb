@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   end
   resources :decide_menus do
     member do
+      post :select_random_menu
       get :random_menu
-      get :random_genre_menu
     end
   end
 end
